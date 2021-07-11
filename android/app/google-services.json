@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "761638422929",
+    "project_id": "gobenk-89b22",
+    "storage_bucket": "gobenk-89b22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761638422929:android:b26e9a7dd967af7c0df230",
+        "android_client_info": {
+          "package_name": "com.gobenk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761638422929-idu7dfcc3bcov3e5f4eg0bq0ho6ktt5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9XnhwmynFpo7KHBw6PaVHXu-ws0xuAyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761638422929-idu7dfcc3bcov3e5f4eg0bq0ho6ktt5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
