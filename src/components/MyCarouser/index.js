@@ -65,30 +65,37 @@ export default function MyCarouser() {
 
   const _renderItem = ({item, index}) => {
     return (
-      <TouchableNativeFeedback>
+      <View
+        style={{
+          borderRadius: 10,
+          backgroundColor: 'red',
+          overflow: 'hidden',
+        }}>
         <ImageBackground
           key={item.id}
-          resizeMode="contain"
+          resizeMode="cover"
           source={item.image}
           style={{
-            height: Math.round((windowWidth * 9) / 14),
+            height: Math.round((windowWidth * 9) / 13),
           }}
         />
-      </TouchableNativeFeedback>
+      </View>
     );
   };
 
   return (
     <View
       style={{
-        backgroundColor: colors.primary,
+        backgroundColor: colors.white,
+        padding: 10,
       }}>
       <Carousel
         // layout="stack"
-        layoutCardOffset={18}
+        // layoutCardOffset={18}
+
         data={data}
-        sliderWidth={windowWidth}
-        itemWidth={windowWidth}
+        sliderWidth={windowWidth - 20}
+        itemWidth={windowWidth - 20}
         renderItem={_renderItem}
         activeDotIndex
         autoplay={true}

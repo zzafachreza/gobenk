@@ -68,15 +68,21 @@ export default function Login({navigation}) {
   return (
     <ImageBackground style={styles.page}>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         style={{
           flex: 1,
         }}>
-        <View style={{height: 250, flex: 1}}>
-          <LottieView
-            style={{flex: 1}}
-            source={require('../../assets/splash.json')}
-            autoPlay
-            loop
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: colors.primary,
+            padding: 10,
+            borderRadius: 10,
+          }}>
+          <Image
+            style={{width: 150, height: 150, resizeMode: 'contain'}}
+            source={require('../../assets/logo3.png')}
           />
         </View>
         <View style={styles.page}>

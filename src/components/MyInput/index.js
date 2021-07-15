@@ -18,6 +18,7 @@ export default function MyInput({
   autoFocus,
   label2,
   styleLabel,
+  borderColor = colors.primary,
   colorIcon = colors.primary,
 }) {
   return (
@@ -63,7 +64,7 @@ export default function MyInput({
         onChangeText={onChangeText}
         autoCapitalize="none"
         style={{
-          borderColor: colors.primary,
+          borderColor: borderColor,
           borderRadius: 10,
           borderWidth: 1,
           paddingLeft: 10,

@@ -39,38 +39,14 @@ export default function Splash({navigation}) {
     });
   }, []);
   return (
-    <SafeAreaView style={styles.page}>
-      <LottieView
-        style={{flex: 1}}
-        source={require('../../assets/splash.json')}
-        autoPlay
-        loop
+    <ImageBackground
+      source={require('../../assets/back.png')}
+      style={styles.page}>
+      <Image
+        style={{width: windowWidth / 1.2, resizeMode: 'contain'}}
+        source={require('../../assets/logo3.png')}
       />
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-          paddingBottom: windowHeight / 6,
-        }}>
-        <Text
-          style={{
-            fontFamily: fonts.secondary[800],
-            fontSize: windowWidth / 9,
-            color: colors.white,
-          }}>
-          GO BENK
-        </Text>
-        <Text
-          style={{
-            fontFamily: fonts.secondary[600],
-            fontSize: windowWidth / 22,
-            color: colors.white,
-          }}>
-          Butuh Solar ? Go Benk Aja Sudah
-        </Text>
-      </View>
-    </SafeAreaView>
+    </ImageBackground>
   );
 }
 

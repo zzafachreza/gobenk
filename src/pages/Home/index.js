@@ -81,24 +81,24 @@ export default function Home({navigation}) {
       <ScrollView>
         <View
           style={{
-            height: 100,
+            height: 80,
             padding: 10,
-            backgroundColor: colors.primary,
+            backgroundColor: colors.white,
             flexDirection: 'row',
           }}>
           <View style={{flex: 1, paddingTop: 15}}>
             <Text
               style={{
-                fontSize: 20,
-                color: colors.white,
+                fontSize: windowWidth / 25,
+                color: colors.black,
                 fontFamily: fonts.secondary[400],
               }}>
               Selamat datang,
             </Text>
             <Text
               style={{
-                fontSize: 20,
-                color: colors.white,
+                fontSize: windowWidth / 22,
+                color: colors.black,
                 fontFamily: fonts.secondary[600],
               }}>
               {user.nama_lengkap}
@@ -112,7 +112,7 @@ export default function Home({navigation}) {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Icon type="ionicon" name="cart-outline" color={colors.white} />
+            <Icon type="ionicon" name="cart-outline" color={colors.black} />
           </TouchableOpacity>
         </View>
 

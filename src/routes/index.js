@@ -34,6 +34,7 @@ import {
   Bayar2,
   Search2,
   Laporan,
+  Chat,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -47,7 +48,7 @@ const MainApp = () => {
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Transaksi" component={ListData} />
-      {/* <Tab.Screen name="Cart" component={Cart} /> */}
+      <Tab.Screen name="Chat" component={Chat} />
       {/* <Tab.Screen name="Notifikasi" component={Notifikasi} /> */}
       <Tab.Screen name="Account" component={Account} />
     </Tab.Navigator>
@@ -67,6 +68,14 @@ export default function Router() {
       <Stack.Screen
         name="GetStarted"
         component={GetStarted}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
         options={{
           headerShown: false,
         }}

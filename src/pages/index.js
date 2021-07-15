@@ -23,6 +23,7 @@ import PemakaianTambah from './PemakaianTambah';
 import BarangPemakaian from './BarangPemakaian';
 import Akses from './Akses';
 import Laporan from './Laporan';
+import Chat from './Chat';
 
 export {
   Splash,
@@ -50,4 +51,5 @@ export {
   BarangPemakaian,
   Akses,
   Laporan,
+  Chat,
 };

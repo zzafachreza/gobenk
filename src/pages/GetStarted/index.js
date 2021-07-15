@@ -44,7 +44,10 @@ export default function GetStarted({navigation}) {
   }).start();
 
   return (
-    <ImageBackground style={styles.page} resizeMode="cover">
+    <ImageBackground
+      source={require('../../assets/back.png')}
+      style={styles.page}
+      resizeMode="cover">
       {/* <StatusBar backgroundColor={colors.secondary} barStyle="light-content" /> */}
       <View
         style={{
@@ -52,33 +55,11 @@ export default function GetStarted({navigation}) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <LottieView
-          style={{flex: 1}}
-          source={require('../../assets/splash.json')}
-          autoPlay
-          loop
+        <Image
+          style={{width: windowWidth / 1.2, resizeMode: 'contain'}}
+          source={require('../../assets/logo3.png')}
         />
       </View>
-      <Text
-        style={{
-          // marginBottom: 50,
-          fontFamily: fonts.secondary[800],
-          fontSize: windowWidth / 9,
-          color: colors.white,
-          textAlign: 'center',
-        }}>
-        GO BENK
-      </Text>
-      <Text
-        style={{
-          marginBottom: windowHeight / 5,
-          fontFamily: fonts.secondary[600],
-          fontSize: windowWidth / 24,
-          color: colors.white,
-          textAlign: 'center',
-        }}>
-        Butuh Solar ? Go Benk Aja Sudah
-      </Text>
 
       <MyButton
         borderSize={1}

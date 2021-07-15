@@ -54,7 +54,7 @@ export default function Register({navigation}) {
   };
   return (
     <ImageBackground style={styles.page}>
-      <ScrollView style={styles.page}>
+      <ScrollView style={styles.page} showsVerticalScrollIndicator={false}>
         {/* <Image
         source={require('../../assets/logooren.png')}
         style={styles.image}
@@ -68,7 +68,7 @@ export default function Register({navigation}) {
             // maxWidth: 230,
           }}>
           Silahkan melakukan pendaftaran terlebih dahulu, sebelum login ke
-          Aplikasi My Laundry
+          Aplikasi
         </Text>
 
         <MyGap jarak={20} />

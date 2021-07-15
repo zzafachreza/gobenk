@@ -27,7 +27,7 @@ const IconCategory = ({img, title, onPress, image}) => {
 
           // backgroundColor: '#F8781D',
           // backgroundColor: '#FFF',
-          backgroundColor: colors.white,
+          backgroundColor: colors.primary,
           borderRadius: 10,
           padding: 10,
           justifyContent: 'center',
@@ -47,7 +47,7 @@ const IconCategory = ({img, title, onPress, image}) => {
             source={image}
             style={{
               resizeMode: 'contain',
-              width: 100,
+              width: 80,
             }}
           />
         </View>
@@ -56,7 +56,7 @@ const IconCategory = ({img, title, onPress, image}) => {
             style={{
               fontFamily: fonts.secondary[600],
               // color: '#F8781D',
-              color: colors.primary,
+              color: colors.white,
               fontSize: windowWidth / 28,
               textAlign: 'center',
             }}>
@@ -91,9 +91,10 @@ export default function MyKategori() {
     <View
       style={{
         // margin: 10,
+        padding: 10,
         // borderRadius: 10,
         justifyContent: 'center',
-        backgroundColor: colors.primary,
+        backgroundColor: colors.white,
       }}>
       <View
         style={{
@@ -101,7 +102,9 @@ export default function MyKategori() {
           padding: 10,
           // justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: '#039F03',
+          backgroundColor: '#046504',
+          borderTopRightRadius: 10,
+          borderTopLeftRadius: 10,
         }}>
         <Icon type="ionicon" name="grid" color="#FFF" size={16} />
         <Text
@@ -119,7 +122,9 @@ export default function MyKategori() {
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'space-around',
-          // backgroundColor: '#16A858',
+          backgroundColor: colors.primary,
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
         }}>
         {dataKategori.map(item => {
           return (

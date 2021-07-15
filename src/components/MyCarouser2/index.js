@@ -66,7 +66,7 @@ export default function MyCarouser2() {
   return (
     <View
       style={{
-        backgroundColor: colors.primary,
+        backgroundColor: colors.white,
       }}>
       <View
         style={{

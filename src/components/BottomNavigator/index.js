@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  Linking,
   Dimensions,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
@@ -56,9 +57,9 @@ export default function BottomNavigator({state, descriptors, navigation}) {
         } else if (label === 'Account') {
           iconName = 'person';
         } else if (label === 'Transaksi') {
-          iconName = 'list';
-        } else if (label === 'Notifikasi') {
-          iconName = 'notifications';
+          iconName = 'cart-outline';
+        } else if (label === 'Chat') {
+          iconName = 'chatbubbles-outline';
         } else if (label === 'Cart') {
           iconName = 'cart';
         }
@@ -70,7 +71,14 @@ export default function BottomNavigator({state, descriptors, navigation}) {
             accessibilityStates={isFocused ? ['selected'] : []}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
-            onPress={onPress}
+            onPress={
+              label === 'Chat'
+                ? () =>
+                    Linking.openURL(
+                      'https://api.whatsapp.com/send?phone=6289653763986',
+                    )
+                : onPress
+            }
             onLongPress={onLongPress}
             style={{flex: 1}}>
             <View
