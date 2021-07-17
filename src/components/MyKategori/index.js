@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Dimensions,
@@ -11,11 +11,21 @@ import {Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
+import axios from 'axios';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const IconCategory = ({img, title, onPress, image}) => {
+  let imageFix = '';
+  if (title == 'GO BUNKER') {
+    imageFix = require('../../assets/bunker.png');
+  } else if (title == 'GO SHIP') {
+    imageFix = require('../../assets/ship.png');
+  } else if (title == 'GO TRUCK') {
+    imageFix = require('../../assets/truck.png');
+  }
+
   return (
     <View>
       <TouchableOpacity
@@ -44,10 +54,11 @@ const IconCategory = ({img, title, onPress, image}) => {
             justifyContent: 'center',
           }}>
           <Image
-            source={image}
+            source={imageFix}
             style={{
               resizeMode: 'contain',
               width: 80,
+              height: 80,
             }}
           />
         </View>
@@ -57,7 +68,7 @@ const IconCategory = ({img, title, onPress, image}) => {
               fontFamily: fonts.secondary[600],
               // color: '#F8781D',
               color: colors.white,
-              fontSize: windowWidth / 28,
+              fontSize: windowWidth / 30,
               textAlign: 'center',
             }}>
             {title}
@@ -71,21 +82,14 @@ const IconCategory = ({img, title, onPress, image}) => {
 export default function MyKategori() {
   const navigation = useNavigation();
 
-  const dataKategori = [
-    {
-      name: 'Go Bunker',
-      image: require('../../assets/bunker.png'),
-    },
-    {
-      name: 'Go Ship',
-      image: require('../../assets/ship.png'),
-    },
+  useEffect(() => {
+    axios.get('https://zavalabs.com/gobenk/api/barang.php').then(res => {
+      setDataKategori(res.data);
+      console.log('artikel barang', res.data);
+    });
+  }, []);
 
-    {
-      name: 'Go Truck',
-      image: require('../../assets/truck.png'),
-    },
-  ];
+  const [dataKategori, setDataKategori] = useState([]);
 
   return (
     <View
@@ -129,14 +133,9 @@ export default function MyKategori() {
         {dataKategori.map(item => {
           return (
             <IconCategory
-              title={item.name}
-              image={item.image}
-              // onPress={() =>
-              //   navigation.navigate('Kategori', {
-              //     kategori: item.value,
-              //     menu: item.value,
-              //   })
-              // }
+              title={item.nama_barang}
+              image={item.foto}
+              onPress={() => navigation.navigate('Barang', item)}
             />
           );
         })}

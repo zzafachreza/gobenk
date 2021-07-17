@@ -7,6 +7,7 @@ import {
   ImageBackground,
   TouchableNativeFeedback,
   Image,
+  FlatList,
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {colors} from '../../utils/colors';
@@ -22,43 +23,64 @@ export default function MyCarouser2() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    // axios.get('https://zavalabs.com/sebatiku/api/slider.php').then(res => {
-    //   setData(res.data);
-    // });
+    axios.get('https://zavalabs.com/gobenk/api/artikel_get.php').then(res => {
+      setData(res.data);
+      console.log('artikel get', data);
+    });
   }, []);
 
-  const [data, setData] = useState([
-    {
-      image: require('../../assets/sb1.png'),
-    },
-    {
-      image: require('../../assets/sb2.png'),
-    },
-    {
-      image: require('../../assets/sb3.png'),
-    },
-  ]);
-
-  const renderCarouselItem = ({item}) => (
-    <View style={styles.cardContainer} key={item.id}>
-      <Image
-        source={item.image}
-        style={{widht: 200, height: 100, resizeMode: 'cover'}}
-      />
-    </View>
-  );
+  const [data, setData] = useState([]);
 
   const _renderItem = ({item, index}) => {
     return (
-      <TouchableNativeFeedback>
-        <ImageBackground
-          key={item.id}
-          resizeMode="contain"
-          source={item.image}
+      <TouchableNativeFeedback
+        onPress={() => navigation.navigate('Artikel', item)}>
+        <View
           style={{
-            height: Math.round((windowWidth * 9) / 14),
-          }}
-        />
+            flex: 1,
+            // backgroundColor: 'red',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginVertical: 5,
+            flexDirection: 'row',
+            paddingHorizontal: 10,
+            borderBottomWidth: 1,
+            paddingBottom: 5,
+            borderBottomColor: colors.border,
+          }}>
+          <View
+            style={{
+              width: 100,
+              height: 70,
+              borderRadius: 10,
+              backgroundColor: 'red',
+              overflow: 'hidden',
+            }}>
+            <Image
+              source={{uri: item.image}}
+              style={{
+                resizeMode: 'cover',
+                height: 80,
+                width: 100,
+              }}
+            />
+          </View>
+          <View style={{flex: 1, paddingLeft: 5}}>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[600],
+              }}>
+              {item.judul}
+            </Text>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[400],
+                color: colors.secondary,
+              }}>
+              {item.tanggal}
+            </Text>
+          </View>
+        </View>
       </TouchableNativeFeedback>
     );
   };
@@ -73,14 +95,14 @@ export default function MyCarouser2() {
           flexDirection: 'row',
           padding: 10,
           marginTop: 10,
-          marginBottom: 10,
+          marginBottom: 5,
           // justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: colors.white,
         }}>
         <Icon
           type="ionicon"
-          name="cube-outline"
+          name="newspaper-outline"
           color={colors.primary}
           size={16}
         />
@@ -91,19 +113,12 @@ export default function MyCarouser2() {
             left: 10,
             fontSize: 16,
           }}>
-          INFORMASI LAYANAN
+          INFO BUAT KAMU
         </Text>
       </View>
-      <Carousel
-        // layout="stack"
-        layoutCardOffset={18}
-        data={data}
-        containerCustomStyle={styles.carousel}
-        renderItem={renderCarouselItem}
-        sliderWidth={Dimensions.get('window').width}
-        itemWidth={300}
-        removeClippedSubviews={false}
-      />
+      <View style={{paddingHorizontal: 10}}>
+        <FlatList data={data} renderItem={_renderItem} />
+      </View>
     </View>
   );
 }

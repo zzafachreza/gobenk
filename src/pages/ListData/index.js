@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {tan} from 'react-native-reanimated';
 import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
+import {fonts, windowWidth} from '../../utils/fonts';
 import axios from 'axios';
 import {getData} from '../../utils/localStorage';
 import PushNotification from 'react-native-push-notification';
@@ -34,7 +34,7 @@ export default function ListData({navigation}) {
       // console.log(res);
 
       axios
-        .post('https://zavalabs.com/mylaundry/api/transaksi.php', {
+        .post('https://zavalabs.com/gobenk/api/transaksi.php', {
           id_member: res.id,
         })
         .then(res => {
@@ -51,7 +51,7 @@ export default function ListData({navigation}) {
         // console.log(res);
 
         axios
-          .post('https://zavalabs.com/mylaundry/api/transaksi.php', {
+          .post('https://zavalabs.com/gobenk/api/transaksi.php', {
             id_member: res.id,
           })
           .then(res => {
@@ -75,6 +75,7 @@ export default function ListData({navigation}) {
         {data.map(item => {
           return (
             <View
+              key={item.id}
               style={{
                 margin: 5,
                 borderTopRightRadius: 10,
@@ -87,29 +88,27 @@ export default function ListData({navigation}) {
                 onPress={() => {
                   console.log('cek detail', item);
                   navigation.navigate('ListDetail', item);
-                }}
-                style={{
-                  flexDirection: 'row',
                 }}>
                 <View style={{flex: 1, padding: 10}}>
                   <Text
                     style={{
                       fontFamily: fonts.secondary[400],
-                      fontSize: 12,
+                      fontSize: windowWidth / 30,
                     }}>
                     Nomor Transaksi - Nama Pelanggan :
                   </Text>
                   <Text
                     style={{
                       fontFamily: fonts.secondary[600],
-                      fontSize: 20,
+                      fontSize: windowWidth / 25,
+                      color: colors.black,
                     }}>
                     {item.kode}
                   </Text>
                   <Text
                     style={{
                       fontFamily: fonts.secondary[600],
-                      fontSize: 16,
+                      fontSize: windowWidth / 25,
                       color: colors.primary,
                     }}>
                     {item.nama_pemesan}
@@ -121,22 +120,30 @@ export default function ListData({navigation}) {
                     {item.tanggal}
                   </Text>
                 </View>
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text
+                <View style={{flexDirection: 'row'}}>
+                  <View
                     style={{
-                      // borderBottomRightRadius: 10,
-                      // backgroundColor: colors.border,
-                      fontFamily: fonts.secondary[600],
-                      fontSize: 25,
-                      color: colors.black,
-                      padding: 10,
+                      flex: 1,
+                      justifyContent: 'flex-start',
+                      alignItems: 'flex-start',
+                    }}></View>
+                  <View
+                    style={{
+                      justifyContent: 'flex-end',
+                      alignItems: 'flex-end',
                     }}>
-                    Rp. {item.total}
-                  </Text>
+                    <Text
+                      style={{
+                        // borderBottomRightRadius: 10,
+                        // backgroundColor: colors.border,
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 20,
+                        color: colors.primary,
+                        padding: 10,
+                      }}>
+                      Rp. {item.total}
+                    </Text>
+                  </View>
                 </View>
               </TouchableOpacity>
 
@@ -156,7 +163,7 @@ export default function ListData({navigation}) {
                     onPress={() => {
                       axios
                         .post(
-                          'https://zavalabs.com/mylaundry/api/transaksi_hapus.php',
+                          'https://zavalabs.com/gobenk/api/transaksi_hapus.php',
                           {
                             id_member: item.id_member,
                             kode: item.kode,
@@ -165,7 +172,7 @@ export default function ListData({navigation}) {
                         .then(res => {
                           axios
                             .post(
-                              'https://zavalabs.com/mylaundry/api/transaksi.php',
+                              'https://zavalabs.com/gobenk/api/transaksi.php',
                               {
                                 id_member: item.id_member,
                               },

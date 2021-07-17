@@ -42,85 +42,99 @@ export default function Checkout({navigation, route}) {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View>
-          {/* data penerima */}
+        <View style={{padding: 10}}>
+          <MyInput
+            label="Nama Penerima"
+            iconname="person"
+            placeholder="Masukan nama penerima"
+            value={kirim.nama_lengkap}
+            onChangeText={val =>
+              setKirim({
+                ...kirim,
+                nama_lengkap: val,
+              })
+            }
+          />
 
-          <View style={{padding: 10}}>
-            <MyInput
-              label="Nama Penerima"
-              iconname="person"
-              placeholder="Masukan nama penerima"
-              value={kirim.nama_lengkap}
-              onChangeText={val =>
-                setKirim({
-                  ...kirim,
-                  nama_lengkap: val,
-                })
-              }
-            />
-            <MyGap jarak={5} />
-            <MyInput
-              label="Nomor Handphone"
-              iconname="call"
-              keyboardType="number-pad"
-              placeholder="Masukan nomor telepon"
-              value={kirim.nohp}
-              onChangeText={val =>
-                setKirim({
-                  ...kirim,
-                  nohp: val,
-                })
-              }
-            />
-            <MyGap jarak={5} />
-            <MyInput
-              label="E-Mail"
-              iconname="mail"
-              placeholder="Masukan alamat email"
-              value={kirim.email}
-              onChangeText={val =>
-                setKirim({
-                  ...kirim,
-                  email: val,
-                })
-              }
-            />
-            <MyGap jarak={5} />
-            <MyInput
-              label="Alamat lengkap"
-              iconname="map"
-              placeholder="Alamat Lengkap"
-              value={kirim.alamat}
-              onChangeText={val =>
-                setKirim({
-                  ...kirim,
-                  alamat: val,
-                })
-              }
-            />
-            <MyGap jarak={5} />
-          </View>
+          <MyInput
+            label="Nama Perusahaan"
+            iconname="person"
+            placeholder="Masukan nama perusahaan"
+            value={kirim.company}
+            onChangeText={val =>
+              setKirim({
+                ...kirim,
+                company: val,
+              })
+            }
+          />
+
+          <MyGap jarak={5} />
+          <MyInput
+            label="Nomor Handphone"
+            iconname="call"
+            keyboardType="number-pad"
+            placeholder="Masukan nomor telepon"
+            value={kirim.nohp}
+            onChangeText={val =>
+              setKirim({
+                ...kirim,
+                nohp: val,
+              })
+            }
+          />
+          <MyGap jarak={5} />
+          <MyInput
+            label="E-Mail"
+            iconname="mail"
+            placeholder="Masukan alamat email"
+            value={kirim.email}
+            onChangeText={val =>
+              setKirim({
+                ...kirim,
+                email: val,
+              })
+            }
+          />
+          <MyGap jarak={5} />
+          <MyInput
+            label="Alamat Pengiriman"
+            iconname="map"
+            placeholder="Alamat Lengkap"
+            value={kirim.alamat}
+            onChangeText={val =>
+              setKirim({
+                ...kirim,
+                alamat: val,
+              })
+            }
+          />
+          <MyGap jarak={5} />
+          <MyInput
+            label="Catatan Pembelian"
+            iconname="map"
+            placeholder="Catatan Pembelian"
+            value={kirim.keterangan}
+            onChangeText={val =>
+              setKirim({
+                ...kirim,
+                keterangan: val,
+              })
+            }
+          />
+          <MyGap jarak={5} />
+        </View>
+        <View style={{padding: 10}}>
+          <MyButton
+            onPress={simpan}
+            title="KONFIRMASI PEMBAYARAN"
+            warna={colors.primary}
+            style={{
+              justifyContent: 'flex-end',
+            }}
+          />
         </View>
       </ScrollView>
-      <View style={{padding: 10}}>
-        <MyButton
-          onPress={simpan}
-          title="PEMBAYARAN VIA TRANSFER"
-          warna={colors.secondary}
-          style={{
-            justifyContent: 'flex-end',
-          }}
-        />
-        <MyGap jarak={10} />
-        <MyButton
-          onPress={simpan2}
-          title="PEMBAYARAN VIA COD"
-          warna={colors.primary}
-          style={{
-            justifyContent: 'flex-end',
-          }}
-        />
-      </View>
     </SafeAreaView>
   );
 }

@@ -35,6 +35,7 @@ import {
   Search2,
   Laporan,
   Chat,
+  Artikel,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -304,6 +305,33 @@ export default function Router() {
         component={Bayar}
         options={({route, navigation}) => ({
           title: 'PEMBAYARAN VIA TRANSFER',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="Artikel"
+        component={Artikel}
+        options={({route, navigation}) => ({
+          title: 'ARTIKEL',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,

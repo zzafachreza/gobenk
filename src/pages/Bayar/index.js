@@ -15,7 +15,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {MyButton, MyInput, MyGap, MyPicker} from '../../components';
 import {colors} from '../../utils/colors';
 import {TouchableOpacity, Swipeable} from 'react-native-gesture-handler';
-import {fonts} from '../../utils/fonts';
+import {fonts, windowWidth} from '../../utils/fonts';
 import {useIsFocused} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import {Icon} from 'react-native-elements';
@@ -32,7 +32,7 @@ export default function Bayar({navigation, route}) {
   const [loading, setLoading] = useState(false);
   console.log('pembayaran', data);
   const [foto1, setfoto1] = useState(
-    'https://ayokulakan.com/img/no-images.png',
+    'http://mti.fti.upnyk.ac.id/asset/images/no-image.png',
   );
 
   const options = {
@@ -109,7 +109,7 @@ export default function Bayar({navigation, route}) {
           }}
           style={{
             width: '100%',
-            aspectRatio: 1.5,
+            aspectRatio: 2,
           }}
           resizeMode="center"
         />
@@ -150,7 +150,7 @@ export default function Bayar({navigation, route}) {
     console.log('kirim ke server', data);
     setTimeout(() => {
       axios
-        .post('https://zavalabs.com/mylaundry/api/transaksi_add.php', data)
+        .post('https://zavalabs.com/gobenk/api/transaksi_add.php', data)
         .then(res => {
           console.log(res);
           setLoading(false);
@@ -180,6 +180,7 @@ export default function Bayar({navigation, route}) {
             <Text
               style={{
                 flex: 1,
+                fontSize: windowWidth / 25,
                 color: colors.black,
                 fontFamily: fonts.secondary[400],
                 padding: 10,
@@ -187,8 +188,8 @@ export default function Bayar({navigation, route}) {
               Transfer Ke BANK :
             </Text>
             <Image
-              source={require('../../assets/bca.png')}
-              style={{width: 100, height: 30, margin: 10}}
+              source={require('../../assets/mandiri.png')}
+              style={{width: 100, height: 30}}
             />
           </View>
           <View
@@ -201,7 +202,7 @@ export default function Bayar({navigation, route}) {
               style={{
                 flex: 1,
                 color: colors.black,
-                fontSize: 16,
+                fontSize: windowWidth / 25,
                 fontFamily: fonts.secondary[400],
                 padding: 10,
               }}>
@@ -210,11 +211,11 @@ export default function Bayar({navigation, route}) {
             <Text
               style={{
                 color: colors.black,
-                fontSize: 16,
+                fontSize: windowWidth / 25,
                 fontFamily: fonts.secondary[600],
                 padding: 10,
               }}>
-              75243132
+              1480017415012
             </Text>
           </View>
           <View
@@ -227,7 +228,7 @@ export default function Bayar({navigation, route}) {
               style={{
                 flex: 1,
                 color: colors.black,
-                fontSize: 16,
+                fontSize: windowWidth / 25,
                 fontFamily: fonts.secondary[400],
                 padding: 10,
               }}>
@@ -236,11 +237,11 @@ export default function Bayar({navigation, route}) {
             <Text
               style={{
                 color: colors.black,
-                fontSize: 16,
+                fontSize: windowWidth / 25,
                 fontFamily: fonts.secondary[600],
                 padding: 10,
               }}>
-              MYLAUNDRY
+              PT. Manolo Berkah Energy
             </Text>
           </View>
           <View
@@ -253,7 +254,7 @@ export default function Bayar({navigation, route}) {
               style={{
                 flex: 1,
                 color: colors.black,
-                fontSize: 16,
+                fontSize: windowWidth / 25,
                 fontFamily: fonts.secondary[400],
                 padding: 10,
               }}>
@@ -262,7 +263,7 @@ export default function Bayar({navigation, route}) {
             <Text
               style={{
                 color: colors.primary,
-                fontSize: 20,
+                fontSize: windowWidth / 25,
                 fontFamily: fonts.secondary[600],
                 padding: 10,
               }}>

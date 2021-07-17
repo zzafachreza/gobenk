@@ -17,7 +17,7 @@ import {fonts} from '../../utils/fonts';
 import {getData} from '../../utils/localStorage';
 import {Icon} from 'react-native-elements';
 import MyCarouser from '../../components/MyCarouser';
-import MyTerbaik from '../../components/MyTerbaik';
+import MyNews from '../../components/MyNews';
 import MyKategori from '../../components/MyKategori';
 import axios from 'axios';
 import MyCarouser2 from '../../components/MyCarouser2';
@@ -121,6 +121,7 @@ export default function Home({navigation}) {
         <MyKategori />
         <MyCarouser2 />
         {/* <MyTerbaik /> */}
+        <MyNews />
       </ScrollView>
     </ImageBackground>
   );

@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import axios from 'axios';
-import {fonts} from '../../utils/fonts';
+import {fonts, windowWidth} from '../../utils/fonts';
 import {colors} from '../../utils/colors';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -20,7 +20,7 @@ export default function ListDetail({navigation, route}) {
 
   useEffect(() => {
     axios
-      .post('https://zavalabs.com/mylaundry/api/transaksi_detail.php', {
+      .post('https://zavalabs.com/gobenk/api/transaksi_detail.php', {
         kode: item.kode,
       })
       .then(res => {
@@ -199,44 +199,31 @@ export default function ListDetail({navigation, route}) {
                     />
                   </View>
                   <View style={{padding: 5, flex: 1}}>
-                    <Text style={{fontFamily: fonts.secondary[600]}}>
-                      {item.nama_barang}
-                    </Text>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                      }}>
-                      <Text
-                        style={{
-                          fontFamily: fonts.secondary[400],
-                          marginRight: 5,
-                        }}>
-                        {item.harga}
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: fonts.secondary[400],
-                        }}>
-                        X
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: fonts.secondary[400],
-                          marginHorizontal: 5,
-                        }}>
-                        {item.qty} {item.uom}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={{justifyContent: 'center'}}>
                     <Text
                       style={{
                         fontFamily: fonts.secondary[600],
-                        fontSize: 18,
-                        color: colors.primary,
+                        fontSize: windowWidth / 30,
                       }}>
-                      {item.total}
+                      {item.nama_barang}
                     </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                      }}>
+                      {item.qty} Liter
+                    </Text>
+
+                    <View style={{justifyContent: 'flex-end', flex: 1}}>
+                      <Text
+                        style={{
+                          fontFamily: fonts.secondary[600],
+                          fontSize: windowWidth / 22,
+                          color: colors.primary,
+                        }}>
+                        {item.total}
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -254,7 +241,7 @@ export default function ListDetail({navigation, route}) {
         <Text
           style={{
             fontFamily: fonts.secondary[600],
-            fontSize: 30,
+            fontSize: windowWidth / 15,
             color: colors.primary,
           }}>
           Rp. {item.total}

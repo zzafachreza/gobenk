@@ -14,6 +14,7 @@ export default function MyInput({
   keyboardType,
   secureTextEntry,
   styleInput,
+  multiline = false,
   placeholder,
   autoFocus,
   label2,
@@ -61,6 +62,7 @@ export default function MyInput({
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         value={value}
+        multiline={multiline}
         onChangeText={onChangeText}
         autoCapitalize="none"
         style={{
