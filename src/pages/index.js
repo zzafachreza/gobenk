@@ -14,6 +14,8 @@ import Kategori from './Kategori';
 import ListData from './ListData';
 import Notifikasi from './Notifikasi';
 import Barang from './Barang';
+import Barang2 from './Barang2';
+import Barang3 from './Barang3';
 import Cart from './Cart';
 import Checkout from './Checkout';
 import Bayar from './Bayar';
@@ -43,6 +45,8 @@ export {
   ListData,
   Notifikasi,
   Barang,
+  Barang2,
+  Barang3,
   Cart,
   Checkout,
   Pemakaian,

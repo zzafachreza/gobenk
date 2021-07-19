@@ -18,11 +18,11 @@ const windowHeight = Dimensions.get('window').height;
 
 const IconCategory = ({img, title, onPress, image}) => {
   let imageFix = '';
-  if (title == 'GO BUNKER') {
+  if (title == 'Go Bunker') {
     imageFix = require('../../assets/bunker.png');
-  } else if (title == 'GO SHIP') {
+  } else if (title == 'Go Ship') {
     imageFix = require('../../assets/ship.png');
-  } else if (title == 'GO TRUCK') {
+  } else if (title == 'Go Truck') {
     imageFix = require('../../assets/truck.png');
   }
 
@@ -131,11 +131,20 @@ export default function MyKategori() {
           borderBottomRightRadius: 10,
         }}>
         {dataKategori.map(item => {
+          let tujuan = '';
+          if (item.nama_barang == 'Go Bunker') {
+            tujuan = 'Barang';
+          } else if (item.nama_barang == 'Go Ship') {
+            tujuan = 'Barang2';
+          } else if (item.nama_barang == 'Go Truck') {
+            tujuan = 'Barang3';
+          }
+
           return (
             <IconCategory
               title={item.nama_barang}
               image={item.foto}
-              onPress={() => navigation.navigate('Barang', item)}
+              onPress={() => navigation.navigate(tujuan, item)}
             />
           );
         })}
