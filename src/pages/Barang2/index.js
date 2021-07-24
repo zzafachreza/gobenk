@@ -192,6 +192,7 @@ export default function Barang2({navigation, route}) {
             Khusus Wilayah Bontang 5.000 Liter
           </Text>
           <MyInput
+            keyboardType="number-pad"
             onChangeText={val => {
               setJumlah(val);
               if (val >= 50000) {

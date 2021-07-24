@@ -21,6 +21,14 @@ import axios from 'axios';
 
 export default function Barang({navigation, route}) {
   const item = route.params;
+  navigation.setOptions({
+    headerShown: false,
+  });
+
+  const [keyboardStatus, setKeyboardStatus] = useState(false);
+  const _keyboardDidShow = () => setKeyboardStatus(true);
+  const _keyboardDidHide = () => setKeyboardStatus(false);
+  const [cart, setCart] = useState(false);
 
   const [jumlah, setJumlah] = useState('5000');
   const [user, setUser] = useState({});
@@ -54,6 +62,7 @@ export default function Barang({navigation, route}) {
           type: 'success',
           message: 'Berhasil Masuk Keranjang',
         });
+        setCart(true);
       });
   };
 
@@ -63,6 +72,60 @@ export default function Barang({navigation, route}) {
         flex: 1,
         backgroundColor: colors.primary,
       }}>
+      <View
+        style={{
+          height: 50,
+          // padding: 10,
+          paddingRight: 10,
+          backgroundColor: colors.primary,
+
+          flexDirection: 'row',
+        }}>
+        <View style={{justifyContent: 'center'}}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{
+              padding: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon type="ionicon" name="arrow-back" color={colors.white} />
+          </TouchableOpacity>
+        </View>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text
+            style={{
+              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 20,
+              color: colors.white,
+            }}>
+            Go Ship
+          </Text>
+        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Cart')}
+          style={{
+            padding: 10,
+            position: 'relative',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Icon type="ionicon" name="cart-outline" color={colors.white} />
+          {cart && (
+            <View
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: 5,
+                backgroundColor: colors.danger,
+                position: 'absolute',
+                right: 10,
+                top: 15,
+              }}
+            />
+          )}
+        </TouchableOpacity>
+      </View>
       <View style={{flex: 1}}>
         <Image
           resizeMode="stretch"
@@ -118,6 +181,7 @@ export default function Barang({navigation, route}) {
           paddingHorizontal: 10,
         }}>
         <MyInput
+          keyboardType="number-pad"
           onChangeText={val => setJumlah(val)}
           label="Masukan Jumlah Pesanan"
           value={jumlah}
