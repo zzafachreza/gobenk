@@ -85,6 +85,37 @@ export default function ListDetail({navigation, route}) {
           </View>
         </View>
         {/* ---- */}
+        {/* --- */}
+        <View style={{flexDirection: 'row'}}>
+          <View style={{flex: 1, padding: 10}}>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[400],
+                backgroundColor: colors.white,
+
+                color: colors.black,
+              }}>
+              Nama Perusahaan
+            </Text>
+          </View>
+          <View
+            style={{
+              justifyContent: 'center',
+              flex: 2,
+            }}>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[600],
+                backgroundColor: colors.white,
+                fontSize: 14,
+                padding: 10,
+                color: colors.black,
+              }}>
+              {item.nama_perusahaan}
+            </Text>
+          </View>
+        </View>
+        {/* ---- */}
 
         {/* --- */}
         <View
@@ -154,6 +185,37 @@ export default function ListDetail({navigation, route}) {
                 color: colors.black,
               }}>
               {item.alamat_pemesan}
+            </Text>
+          </View>
+        </View>
+        {/* ---- */}
+        {/* --- */}
+        <View style={{flexDirection: 'row'}}>
+          <View style={{flex: 1, padding: 10}}>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[400],
+                backgroundColor: colors.white,
+
+                color: colors.black,
+              }}>
+              Catatan
+            </Text>
+          </View>
+          <View
+            style={{
+              justifyContent: 'center',
+              flex: 2,
+            }}>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[600],
+                backgroundColor: colors.white,
+                fontSize: 14,
+                padding: 10,
+                color: colors.black,
+              }}>
+              {item.keterangan}
             </Text>
           </View>
         </View>
@@ -233,19 +295,43 @@ export default function ListDetail({navigation, route}) {
       </View>
       <View
         style={{
-          justifyContent: 'center',
-          alignItems: 'flex-end',
-          padding: 20,
-          backgroundColor: colors.white,
+          flexDirection: 'row',
         }}>
-        <Text
+        <View
           style={{
-            fontFamily: fonts.secondary[600],
-            fontSize: windowWidth / 15,
-            color: colors.primary,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 20,
+            flex: 1,
+            backgroundColor: colors.white,
           }}>
-          Rp. {item.total}
-        </Text>
+          <Text
+            style={{
+              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 15,
+              color: colors.primary,
+            }}>
+            Rp. {item.total}
+          </Text>
+        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ListView', item)}
+          style={{
+            padding: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+            flex: 1,
+            backgroundColor: colors.danger,
+          }}>
+          <Text
+            style={{
+              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 20,
+              color: colors.white,
+            }}>
+            LIHAT INVOICE
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

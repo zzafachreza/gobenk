@@ -30,7 +30,7 @@ export default function Bayar({navigation, route}) {
 
   console.log('data dari bayar', data);
   const [loading, setLoading] = useState(false);
-  console.log('pembayaran', data);
+  // console.log('pembayaran', data);
   const [foto1, setfoto1] = useState(
     'http://mti.fti.upnyk.ac.id/asset/images/no-image.png',
   );

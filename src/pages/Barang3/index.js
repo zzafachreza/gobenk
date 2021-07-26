@@ -98,7 +98,7 @@ export default function Barang2({navigation, route}) {
       id_barang: item.id,
       nama_barang: item.nama_barang,
       qty: jumlah,
-      harga: item.harga,
+      harga: parseInt(item.harga) + parseInt(ongkir),
       total: jumlah * item.harga,
       foto: item.foto,
     };

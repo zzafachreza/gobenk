@@ -27,6 +27,7 @@ import Akses from './Akses';
 import Laporan from './Laporan';
 import Chat from './Chat';
 import Artikel from './Artikel';
+import ListView from './ListVIew';
 
 export {
   Splash,
@@ -58,4 +59,5 @@ export {
   Laporan,
   Chat,
   Artikel,
+  ListView,
 };

@@ -111,13 +111,19 @@ export default function ListData({navigation}) {
                       fontSize: windowWidth / 25,
                       color: colors.primary,
                     }}>
-                    {item.nama_pemesan}
+                    {item.nama_pemesan} / {item.nama_perusahaan}
                   </Text>
                   <Text
                     style={{
                       fontFamily: fonts.secondary[400],
                     }}>
                     {item.tanggal}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[300],
+                    }}>
+                    *{item.keterangan}
                   </Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>

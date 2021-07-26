@@ -23,15 +23,17 @@ import 'intl/locale-data/jsonp/en';
 import {showMessage} from 'react-native-flash-message';
 
 export default function Checkout({navigation, route}) {
-  const item = route.params;
-
-  const [kirim, setKirim] = useState(item);
+  const [kirim, setKirim] = useState({});
 
   const simpan = () => {
-    console.log(item);
+    console.log(kirim);
 
-    navigation.navigate('Bayar', item);
+    navigation.navigate('Bayar', kirim);
   };
+
+  useEffect(() => {
+    setKirim(route.params);
+  }, []);
 
   const simpan2 = () => {
     console.log(item);
@@ -60,11 +62,11 @@ export default function Checkout({navigation, route}) {
             label="Nama Perusahaan"
             iconname="person"
             placeholder="Masukan nama perusahaan"
-            value={kirim.company}
+            value={kirim.nama_perusahaan}
             onChangeText={val =>
               setKirim({
                 ...kirim,
-                company: val,
+                nama_perusahaan: val,
               })
             }
           />
@@ -98,6 +100,7 @@ export default function Checkout({navigation, route}) {
           />
           <MyGap jarak={5} />
           <MyInput
+            multiline={true}
             label="Alamat Pengiriman"
             iconname="map"
             placeholder="Alamat Lengkap"
@@ -111,6 +114,7 @@ export default function Checkout({navigation, route}) {
           />
           <MyGap jarak={5} />
           <MyInput
+            multiline={true}
             label="Catatan Pembelian"
             iconname="map"
             placeholder="Catatan Pembelian"
