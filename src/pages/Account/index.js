@@ -102,6 +102,21 @@ export default function Account({navigation}) {
             style={{
               marginVertical: 5,
               padding: 10,
+              backgroundColor: colors.success,
+              borderRadius: 10,
+            }}>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[400],
+                color: colors.white,
+              }}>
+              {user.tipe}
+            </Text>
+          </View>
+          <View
+            style={{
+              marginVertical: 5,
+              padding: 10,
               backgroundColor: colors.white,
               borderRadius: 10,
             }}>

@@ -40,7 +40,7 @@ export default function Login({navigation}) {
     console.log(data);
     setTimeout(() => {
       axios
-        .post('https://zavalabs.com/mylaundry/api/login.php', data)
+        .post('https://zavalabs.com/gobenk/api/login.php', data)
         .then(res => {
           console.log(res.data);
           setLoading(false);
@@ -52,7 +52,7 @@ export default function Login({navigation}) {
           } else {
             storeData('user', res.data);
             axios
-              .post('https://zavalabs.com/mylaundry/api/update_token.php', {
+              .post('https://zavalabs.com/gobenk/api/update_token.php', {
                 id_member: res.data.id,
                 token: token,
               })

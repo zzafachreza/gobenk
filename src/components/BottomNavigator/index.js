@@ -53,15 +53,17 @@ export default function BottomNavigator({state, descriptors, navigation}) {
         let iconName = 'home';
 
         if (label === 'Home') {
-          iconName = 'home';
+          iconName = 'home-outline';
         } else if (label === 'Account') {
-          iconName = 'person';
+          iconName = 'person-outline';
         } else if (label === 'Transaksi') {
           iconName = 'cart-outline';
         } else if (label === 'Chat') {
           iconName = 'chatbubbles-outline';
         } else if (label === 'Cart') {
           iconName = 'cart';
+        } else if (label === 'Pesanan') {
+          iconName = 'cube-outline';
         }
 
         return (

@@ -12,6 +12,7 @@ import Search from './Search';
 import Search2 from './Search2';
 import Kategori from './Kategori';
 import ListData from './ListData';
+import ListData2 from './ListData2';
 import Notifikasi from './Notifikasi';
 import Barang from './Barang';
 import Barang2 from './Barang2';
@@ -28,6 +29,7 @@ import Laporan from './Laporan';
 import Chat from './Chat';
 import Artikel from './Artikel';
 import ListView from './ListVIew';
+import ListView2 from './ListView2';
 
 export {
   Splash,
@@ -44,6 +46,7 @@ export {
   Search2,
   Kategori,
   ListData,
+  ListData2,
   Notifikasi,
   Barang,
   Barang2,
@@ -60,4 +63,5 @@ export {
   Chat,
   Artikel,
   ListView,
+  ListView2,
 };

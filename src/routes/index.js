@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -39,24 +39,42 @@ import {
   Barang2,
   Barang3,
   ListView,
+  ListData2,
+  ListView2,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
 import {colors} from '../utils/colors';
+import {getData} from '../utils/localStorage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const MainApp = () => {
-  return (
-    <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Transaksi" component={ListData} />
-      <Tab.Screen name="Chat" component={Chat} />
-      {/* <Tab.Screen name="Notifikasi" component={Notifikasi} /> */}
-      <Tab.Screen name="Account" component={Account} />
-    </Tab.Navigator>
-  );
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    getData('user').then(res => {
+      setUser(res);
+    });
+  }, []);
+
+  if (user.tipe == 'MEMBER') {
+    return (
+      <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Transaksi" component={ListData} />
+        <Tab.Screen name="Chat" component={Chat} />
+        <Tab.Screen name="Account" component={Account} />
+      </Tab.Navigator>
+    );
+  } else {
+    return (
+      <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
+        <Tab.Screen name="Pesanan" component={ListData2} />
+        <Tab.Screen name="Account" component={Account} />
+      </Tab.Navigator>
+    );
+  }
 };
 
 export default function Router() {
@@ -92,6 +110,15 @@ export default function Router() {
           headerShown: false,
         }}
       />
+
+      <Stack.Screen
+        name="ListData2"
+        component={ListData2}
+        options={{
+          headerShown: false,
+        }}
+      />
+
       <Stack.Screen
         name="Pemakaian"
         component={Pemakaian}
@@ -153,32 +180,7 @@ export default function Router() {
           },
         }}
       />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{
-          headerTitle: 'Register',
-          headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: colors.primary,
-            elevation: 0, // remove shadow on Android
-          },
-          cardStyleInterpolator: ({current, layouts}) => {
-            return {
-              cardStyle: {
-                transform: [
-                  {
-                    translateX: current.progress.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [layouts.screen.width, 0],
-                    }),
-                  },
-                ],
-              },
-            };
-          },
-        }}
-      />
+
       <Stack.Screen
         name="MainApp"
         component={MainApp}
@@ -190,6 +192,14 @@ export default function Router() {
       <Stack.Screen
         name="Search"
         component={Search}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Register"
+        component={Register}
         options={{
           headerShown: false,
         }}
@@ -468,6 +478,33 @@ export default function Router() {
         component={ListView}
         options={({route, navigation}) => ({
           title: 'INVOICE',
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="ListView2"
+        component={ListView2}
+        options={({route, navigation}) => ({
+          title: 'INVOICE FOR KURIR',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
