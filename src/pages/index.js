@@ -30,6 +30,9 @@ import Chat from './Chat';
 import Artikel from './Artikel';
 import ListView from './ListVIew';
 import ListView2 from './ListView2';
+import ListView3 from './ListView3';
+import ListView4 from './ListVIew4';
+import Bayar3 from './Bayar3';
 
 export {
   Splash,
@@ -64,4 +67,7 @@ export {
   Artikel,
   ListView,
   ListView2,
+  ListView3,
+  ListView4,
+  Bayar3,
 };

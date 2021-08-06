@@ -33,38 +33,15 @@ export default function ListView2({navigation, route}) {
     let file = await RNHTMLtoPDF.convert(options);
     console.log(file.filePath);
     alert(file.filePath);
-    // showMessage({
-    //   type: 'success',
-    //   message: 'Berhsil di simpan di ' + file.filePath,
-    // });
-
-    // navigation.navigate('MaterialReportDetail', {
-    //   link: file.filePath,
-    // });
   };
+
   const myUrl =
-    `https://zavalabs.com/gobenk/api/inv.php?kode=` + route.params.kode;
+    `https://zavalabs.com/gobenk/api/inv_kurir.php?kode=` + route.params.kode;
 
   const myUrl2 =
-    `https://zavalabs.com/gobenk/api/inv2.php?kode=` + route.params.kode;
+    `https://zavalabs.com/gobenk/api/inv_kurir2.php?kode=` + route.params.kode;
 
-  const myUrlPostServer =
-    `https://zavalabs.com/gobenk/api/inv_update.php?kode=` + route.params.kode;
-
-  const sendServer = () => {
-    setVisible(true);
-    axios.post(myUrlPostServer).then(res => {
-      console.log(res.data);
-      setTimeout(() => {
-        setVisible(false);
-        showMessage({
-          type: 'success',
-          message: 'Update Status Berhasil',
-        });
-        navigation.goBack();
-      }, 1200);
-    });
-  };
+  const sendServer = () => {};
 
   return (
     <SafeAreaView
@@ -98,23 +75,23 @@ export default function ListView2({navigation, route}) {
         </View>
       )}
       <TouchableOpacity
-        onPress={sendServer}
+        // onPress={sendServer}
         style={{
           padding: 15,
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
-          backgroundColor: colors.primary,
+          backgroundColor: colors.white,
         }}>
-        <Icon type="ionicon" name="cloud-upload-outline" color={colors.white} />
+        <Icon type="ionicon" name="cloud-done-outline" color={colors.primary} />
         <Text
           style={{
             left: 10,
             fontFamily: fonts.secondary[600],
             fontSize: windowWidth / 20,
-            color: colors.white,
+            color: colors.primary,
           }}>
-          ANTAR PESANAN
+          SELESAI
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

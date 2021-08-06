@@ -49,20 +49,11 @@ export default function ListView2({navigation, route}) {
     `https://zavalabs.com/gobenk/api/inv2.php?kode=` + route.params.kode;
 
   const myUrlPostServer =
-    `https://zavalabs.com/gobenk/api/inv_update.php?kode=` + route.params.kode;
+    `https://zavalabs.com/gobenk/api/inv_update2.php?kode=` + route.params.kode;
 
   const sendServer = () => {
-    setVisible(true);
-    axios.post(myUrlPostServer).then(res => {
-      console.log(res.data);
-      setTimeout(() => {
-        setVisible(false);
-        showMessage({
-          type: 'success',
-          message: 'Update Status Berhasil',
-        });
-        navigation.goBack();
-      }, 1200);
+    navigation.navigate('Bayar3', {
+      kode: route.params.kode,
     });
   };
 
@@ -114,7 +105,7 @@ export default function ListView2({navigation, route}) {
             fontSize: windowWidth / 20,
             color: colors.white,
           }}>
-          ANTAR PESANAN
+          KONFIRMASI
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

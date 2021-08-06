@@ -87,7 +87,14 @@ export default function ListData2({navigation}) {
               <TouchableOpacity
                 onPress={() => {
                   console.log('cek detail', item);
-                  navigation.navigate('ListView2', item);
+
+                  if (item.status == 'SELESAI') {
+                    navigation.navigate('ListView4', item);
+                  } else if (item.status == 'SEDANG DI ANTAR') {
+                    navigation.navigate('ListView3', item);
+                  } else {
+                    navigation.navigate('ListView2', item);
+                  }
                 }}>
                 <View style={{flex: 1, padding: 10}}>
                   <Text
@@ -170,7 +177,10 @@ export default function ListData2({navigation}) {
                   justifyContent: 'center',
                   alignItems: 'center',
                   padding: 10,
-                  backgroundColor: colors.primary,
+                  backgroundColor:
+                    item.status == 'SEDANG DI ANTAR'
+                      ? colors.secondary
+                      : colors.primary,
                 }}>
                 <Text
                   style={{
@@ -178,7 +188,7 @@ export default function ListData2({navigation}) {
                     fontSize: windowWidth / 30,
                     color: colors.white,
                   }}>
-                  DETAIL PESANAN
+                  {item.status}
                 </Text>
               </View>
             </View>
