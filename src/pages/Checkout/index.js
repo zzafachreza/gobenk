@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableWithoutFeedback,
   Image,
+  TextInput,
 } from 'react-native';
 
 import {getData} from '../../utils/localStorage';
@@ -23,7 +24,9 @@ import 'intl/locale-data/jsonp/en';
 import {showMessage} from 'react-native-flash-message';
 
 export default function Checkout({navigation, route}) {
-  const [kirim, setKirim] = useState({});
+  console.log('render', route.params);
+
+  const [kirim, setKirim] = useState(route.params);
 
   const simpan = () => {
     console.log(kirim);
@@ -111,6 +114,55 @@ export default function Checkout({navigation, route}) {
                 alamat: val,
               })
             }
+          />
+          <MyGap jarak={5} />
+          <View style={{flexDirection: 'row'}}>
+            <View style={{flex: 1, paddingRight: 2.5, marginBottom: 5}}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.primary,
+                  left: 5,
+                }}>
+                Latitude
+              </Text>
+              <TextInput
+                value={
+                  route.params.latitude && route.params.latitude.toString()
+                }
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  borderColor: colors.primary,
+                }}
+              />
+            </View>
+            <View style={{flex: 1, paddingLeft: 2.5, marginBottom: 5}}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.primary,
+                  left: 5,
+                }}>
+                Longtitude
+              </Text>
+              <TextInput
+                value={
+                  route.params.longitude && route.params.longitude.toString()
+                }
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  borderColor: colors.primary,
+                }}
+              />
+            </View>
+          </View>
+          <MyButton
+            title="Buka Maps"
+            warna={colors.primary}
+            Icons="map-outline"
+            onPress={() => navigation.navigate('Map')}
           />
           <MyGap jarak={5} />
           <MyInput

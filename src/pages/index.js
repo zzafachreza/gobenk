@@ -33,9 +33,11 @@ import ListView2 from './ListView2';
 import ListView3 from './ListView3';
 import ListView4 from './ListVIew4';
 import Bayar3 from './Bayar3';
+import Map from './Map';
 
 export {
   Splash,
+  Map,
   GetStarted,
   Register,
   Login,

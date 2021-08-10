@@ -44,6 +44,7 @@ import {
   ListView3,
   Bayar3,
   ListView4,
+  Map,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -57,6 +58,7 @@ const MainApp = () => {
   const [user, setUser] = useState({});
   useEffect(() => {
     getData('user').then(res => {
+      console.log('user pada routes', res);
       setUser(res);
     });
   }, []);
@@ -140,6 +142,14 @@ export default function Router() {
       <Stack.Screen
         name="Success"
         component={Success}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Map"
+        component={Map}
         options={{
           headerShown: false,
         }}
