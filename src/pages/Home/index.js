@@ -14,15 +14,17 @@ import {
 } from 'react-native';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
-import {getData} from '../../utils/localStorage';
+import {getData, storeData} from '../../utils/localStorage';
 import {Icon} from 'react-native-elements';
 import MyCarouser from '../../components/MyCarouser';
 import MyNews from '../../components/MyNews';
 import MyKategori from '../../components/MyKategori';
 import axios from 'axios';
 import MyCarouser2 from '../../components/MyCarouser2';
+import {useIsFocused} from '@react-navigation/native';
 
 export default function Home({navigation}) {
+  const isFocused = useIsFocused();
   const images = [
     {
       image:
@@ -38,25 +40,32 @@ export default function Home({navigation}) {
 
   const [user, setUser] = useState([]);
   const [token, setToken] = useState('');
+  const [cart, setCart] = useState(false);
 
   useEffect(() => {
-    getData('user').then(res => {
-      console.log(res);
-      setUser(res);
-      getData('token').then(res => {
-        console.log('data token,', res);
-        setToken(res.token);
+    if (isFocused) {
+      getData('user').then(res => {
+        console.log(res);
+        setUser(res);
+        getData('token').then(res => {
+          console.log('data token,', res);
+          setToken(res.token);
+        });
       });
+      axios
+        .post('https://zavalabs.com/mylaundry/api/update_token.php', {
+          id_member: user.id,
+          token: token,
+        })
+        .then(res => {
+          console.log('update token', res);
+        });
+    }
+
+    getData('cart').then(res => {
+      setCart(res);
     });
-    axios
-      .post('https://zavalabs.com/mylaundry/api/update_token.php', {
-        id_member: user.id,
-        token: token,
-      })
-      .then(res => {
-        console.log('update token', res);
-      });
-  }, []);
+  }, [isFocused]);
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -113,6 +122,19 @@ export default function Home({navigation}) {
               alignItems: 'center',
             }}>
             <Icon type="ionicon" name="cart-outline" color={colors.black} />
+            {cart && (
+              <View
+                style={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: 5,
+                  backgroundColor: colors.danger,
+                  position: 'absolute',
+                  right: 15,
+                  top: 15,
+                }}
+              />
+            )}
           </TouchableOpacity>
         </View>
 

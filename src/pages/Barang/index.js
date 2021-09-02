@@ -16,7 +16,7 @@ import 'intl/locale-data/jsonp/en';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {Modalize} from 'react-native-modalize';
 import {showMessage} from 'react-native-flash-message';
-import {getData} from '../../utils/localStorage';
+import {getData, storeData} from '../../utils/localStorage';
 import axios from 'axios';
 
 export default function Barang({navigation, route}) {
@@ -38,6 +38,10 @@ export default function Barang({navigation, route}) {
       console.log('data user', res);
       setUser(res);
     });
+
+    getData('cart').then(res => {
+      setCart(res);
+    });
   }, []);
 
   const addToCart = () => {
@@ -50,6 +54,7 @@ export default function Barang({navigation, route}) {
       total: jumlah * item.harga,
       foto: item.foto,
     };
+    storeData('cart', true);
     console.log('kirim tok server', kirim);
     axios
       .post('https://zavalabs.com/gobenk/api/barang_add.php', kirim)

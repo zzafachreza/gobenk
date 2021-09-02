@@ -14,6 +14,9 @@ import {fonts, windowWidth} from '../../utils/fonts';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
+import {MyGap} from '../../components';
+import {Link} from '@react-navigation/native';
+import {Linking} from 'react-native';
 
 export default function ListView2({navigation, route}) {
   const [user, setUser] = useState({});
@@ -97,6 +100,8 @@ export default function ListView2({navigation, route}) {
           <ActivityIndicator color={colors.primary} size="large" />
         </View>
       )}
+
+      {/* <MyGap jarak={20} /> */}
       <TouchableOpacity
         onPress={sendServer}
         style={{

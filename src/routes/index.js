@@ -357,7 +357,7 @@ export default function Router() {
         name="Bayar3"
         component={Bayar3}
         options={({route, navigation}) => ({
-          title: 'KONFIRMASI PENGNTARAN',
+          title: 'KONFIRMASI PENGANTARAN',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,

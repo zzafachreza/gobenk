@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 
-import {getData} from '../../utils/localStorage';
+import {getData, storeData} from '../../utils/localStorage';
 import axios from 'axios';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {MyButton, MyInput, MyGap, MyPicker} from '../../components';
@@ -147,7 +147,7 @@ export default function Bayar({navigation, route}) {
 
   const simpan = () => {
     setLoading(true);
-    console.log('kirim ke server', data);
+    console.log('kirim ke server last', data);
     setTimeout(() => {
       axios
         .post('https://zavalabs.com/gobenk/api/transaksi_add.php', data)
@@ -162,6 +162,7 @@ export default function Bayar({navigation, route}) {
         message: 'Transaksi Berhasil, Terima kasih',
       });
     }, 1200);
+    storeData('cart', false);
   };
   return (
     <>

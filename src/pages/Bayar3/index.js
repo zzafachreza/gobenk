@@ -193,6 +193,17 @@ export default function Bayar3({navigation, route}) {
               })
             }
           />
+          <MyInput
+            label="Jabatan / Hubungan"
+            iconname="analytics"
+            value={data.jabatan_penerima}
+            onChangeText={val =>
+              setData({
+                ...data,
+                jabatan_penerima: val,
+              })
+            }
+          />
           <MyGap jarak={3} />
           <MyInput
             label="Nomor Telepon"

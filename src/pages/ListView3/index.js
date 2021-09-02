@@ -5,6 +5,7 @@ import {
   View,
   SafeAreaView,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 import WebView from 'react-native-webview';
 import {colors} from '../../utils/colors';
@@ -89,6 +90,34 @@ export default function ListView2({navigation, route}) {
         </View>
       )}
       <TouchableOpacity
+        onPress={() => {
+          Linking.openURL(
+            `http://www.google.com/maps/place/${route.params.latitude},${route.params.longitude}`,
+          );
+        }}
+        style={{
+          padding: 15,
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+          backgroundColor: colors.secondary,
+        }}>
+        <Icon
+          type="ionicon"
+          name="navigate-circle-outline"
+          color={colors.white}
+        />
+        <Text
+          style={{
+            left: 10,
+            fontFamily: fonts.secondary[600],
+            fontSize: windowWidth / 20,
+            color: colors.white,
+          }}>
+          CEK LOKASI CUSTOMER
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={sendServer}
         style={{
           padding: 15,
@@ -105,7 +134,7 @@ export default function ListView2({navigation, route}) {
             fontSize: windowWidth / 20,
             color: colors.white,
           }}>
-          KONFIRMASI
+          KONFIRMASI SUDAH SAMPAI
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

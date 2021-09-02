@@ -26,6 +26,7 @@ import {useNavigation} from '@react-navigation/native';
 import {fonts, windowWidth} from '../../utils/fonts';
 import {colors} from '../../utils/colors';
 import {MyButton} from '../../components';
+import Geocoder from 'react-native-geocoding';
 
 export default function Map({navigation}) {
   let _map = null;
@@ -91,6 +92,8 @@ export default function Map({navigation}) {
     </View>
   );
 
+  Geocoder.init('AIzaSyAEwGLRKSdTFlesR57_iurVepdw__eKeK0');
+
   return (
     <View style={styles.container}>
       <MapView
@@ -103,6 +106,13 @@ export default function Map({navigation}) {
           onDragEnd={e => {
             console.log('dragEnd', e.nativeEvent.coordinate);
             setCor(e.nativeEvent.coordinate);
+            Geocoder.from(
+              e.nativeEvent.coordinate.latitude,
+              e.nativeEvent.coordinate.longitude,
+            ).then(json => {
+              var addressComponent = json.results[0].address_components[0];
+              console.log('alamat', addressComponent);
+            });
           }}
           coordinate={{
             latitude: -6.928100233623593,

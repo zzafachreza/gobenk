@@ -28,11 +28,14 @@ export default function ListData({navigation}) {
     const json = JSON.stringify(remoteMessage);
     const obj = JSON.parse(json);
     // alert(obj.notification);
+    Ambildata();
     // console.log('list transaksi', obj.notification);
+  });
+
+  const Ambildata = () => {
     getData('user').then(res => {
       setUser(res);
       // console.log(res);
-
       axios
         .post('https://zavalabs.com/gobenk/api/transaksi.php', {
           id_member: res.id,
@@ -42,7 +45,7 @@ export default function ListData({navigation}) {
           setData(res.data);
         });
     });
-  });
+  };
 
   useEffect(() => {
     if (isFocused) {
@@ -111,7 +114,16 @@ export default function ListData({navigation}) {
                       fontSize: windowWidth / 25,
                       color: colors.primary,
                     }}>
-                    {item.nama_pemesan} / {item.nama_perusahaan}
+                    {item.nama_perusahaan}
+                  </Text>
+
+                  <Text
+                    style={{
+                      fontFamily: fonts.secondary[400],
+                      fontSize: windowWidth / 28,
+                      color: colors.secondary,
+                    }}>
+                    {item.nama_pemesan}
                   </Text>
                   <Text
                     style={{
@@ -164,6 +176,57 @@ export default function ListData({navigation}) {
                       fontFamily: fonts.secondary[600],
                     }}>
                     SEDANG DIPROSES
+                  </Text>
+                  {/* <TouchableOpacity
+                    onPress={() => {
+                      axios
+                        .post(
+                          'https://zavalabs.com/gobenk/api/transaksi_hapus.php',
+                          {
+                            id_member: item.id_member,
+                            kode: item.kode,
+                          },
+                        )
+                        .then(res => {
+                          axios
+                            .post(
+                              'https://zavalabs.com/gobenk/api/transaksi.php',
+                              {
+                                id_member: item.id_member,
+                              },
+                            )
+                            .then(res => {
+                              console.log(res.data);
+                              setData(res.data);
+                            });
+                        });
+                    }}
+                    style={{
+                      padding: 10,
+                      backgroundColor: colors.danger,
+                    }}>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        color: colors.white,
+                      }}>
+                      Batalkan Transaksi
+                    </Text>
+                  </TouchableOpacity> */}
+                </View>
+              )}
+
+              {item.status === 'MENUNGGU KONFIRMASI' && (
+                <View style={{flexDirection: 'row'}}>
+                  <Text
+                    style={{
+                      flex: 1,
+                      backgroundColor: '#DEDEDE',
+                      color: colors.black,
+                      padding: 10,
+                      fontFamily: fonts.secondary[600],
+                    }}>
+                    MENUNGGU KONFIRMASI
                   </Text>
                   <TouchableOpacity
                     onPress={() => {

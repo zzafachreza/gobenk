@@ -25,7 +25,7 @@ import {showMessage} from 'react-native-flash-message';
 
 export default function Checkout({navigation, route}) {
   console.log('render', route.params);
-
+  const isFocused = useIsFocused();
   const [kirim, setKirim] = useState(route.params);
 
   const simpan = () => {
@@ -35,8 +35,14 @@ export default function Checkout({navigation, route}) {
   };
 
   useEffect(() => {
-    setKirim(route.params);
-  }, []);
+    if (isFocused) {
+      setKirim({
+        ...kirim,
+        latitude: route.params.latitude,
+        longitude: route.params.longitude,
+      });
+    }
+  }, [isFocused]);
 
   const simpan2 = () => {
     console.log(item);
