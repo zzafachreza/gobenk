@@ -68,7 +68,7 @@ const MainApp = () => {
       <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Transaksi" component={ListData} />
-        <Tab.Screen name="Chat" component={Chat} />
+        <Tab.Screen name="ChatWa" component={Chat} />
         <Tab.Screen name="Account" component={Account} />
       </Tab.Navigator>
     );
@@ -80,6 +80,10 @@ const MainApp = () => {
       </Tab.Navigator>
     );
   }
+};
+
+const ChatWA = () => {
+  alert('jajaj');
 };
 
 export default function Router() {
@@ -102,7 +106,7 @@ export default function Router() {
 
       <Stack.Screen
         name="Chat"
-        component={Chat}
+        component={ChatWA}
         options={{
           headerShown: false,
         }}

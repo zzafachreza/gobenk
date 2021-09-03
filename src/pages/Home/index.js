@@ -53,7 +53,7 @@ export default function Home({navigation}) {
         });
       });
       axios
-        .post('https://zavalabs.com/mylaundry/api/update_token.php', {
+        .post('https://zavalabs.com/gobenk/api/update_token.php', {
           id_member: user.id,
           token: token,
         })
@@ -92,14 +92,14 @@ export default function Home({navigation}) {
           style={{
             height: 80,
             padding: 10,
-            backgroundColor: colors.white,
+            backgroundColor: colors.primary,
             flexDirection: 'row',
           }}>
           <View style={{flex: 1, paddingTop: 15}}>
             <Text
               style={{
                 fontSize: windowWidth / 25,
-                color: colors.black,
+                color: colors.white,
                 fontFamily: fonts.secondary[400],
               }}>
               Selamat datang,
@@ -107,7 +107,7 @@ export default function Home({navigation}) {
             <Text
               style={{
                 fontSize: windowWidth / 22,
-                color: colors.black,
+                color: colors.white,
                 fontFamily: fonts.secondary[600],
               }}>
               {user.nama_lengkap}
@@ -121,7 +121,7 @@ export default function Home({navigation}) {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Icon type="ionicon" name="cart-outline" color={colors.black} />
+            <Icon type="ionicon" name="cart-outline" color={colors.white} />
             {cart && (
               <View
                 style={{

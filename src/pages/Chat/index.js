@@ -4,11 +4,11 @@ import {getData} from '../../utils/localStorage';
 import axios from 'axios';
 
 export default function Chat() {
-  // useEffect(() => {
-  //   axios.post('https://zavalabs.com/gobenk/api/company.php').then(res => {
-  //     Linking.openURL('https://api.whatsapp.com/send?phone=' + res.data.tlp);
-  //   });
-  // });
+  useEffect(() => {
+    axios.post('https://zavalabs.com/gobenk/api/company.php').then(res => {
+      Linking.openURL('https://api.whatsapp.com/send?phone=' + res.data.tlp);
+    });
+  });
 
   return (
     <View>

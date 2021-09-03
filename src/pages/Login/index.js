@@ -21,10 +21,26 @@ export default function Login({navigation}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
+  const [valid, setValid] = useState(true);
+
+  const validate = text => {
+    // console.log(text);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(text) === false) {
+      // console.log('Email is Not Correct');
+      setData({...data, email: text});
+      setValid(false);
+      return false;
+    } else {
+      setData({...data, email: text});
+      setValid(true);
+      // console.log('Email is Correct');
+    }
+  };
   const [token, setToken] = useState('');
   const [data, setData] = useState({
-    email: null,
-    password: null,
+    email: '',
+    password: '',
   });
 
   useEffect(() => {
@@ -36,34 +52,48 @@ export default function Login({navigation}) {
 
   // login ok
   const masuk = () => {
-    setLoading(true);
-    console.log(data);
-    setTimeout(() => {
-      axios
-        .post('https://zavalabs.com/gobenk/api/login.php', data)
-        .then(res => {
-          console.log(res.data);
-          setLoading(false);
-          if (res.data.kode == 50) {
-            showMessage({
-              type: 'danger',
-              message: res.data.msg,
-            });
-          } else {
-            storeData('user', res.data);
-            axios
-              .post('https://zavalabs.com/gobenk/api/update_token.php', {
-                id_member: res.data.id,
-                token: token,
-              })
-              .then(res => {
-                console.log('update token', res);
+    if (data.email.length === 0 && data.password.length === 0) {
+      showMessage({
+        message: 'Maaf Email dan Password masih kosong !',
+      });
+    } else if (data.email.length === 0) {
+      showMessage({
+        message: 'Maaf Email masih kosong !',
+      });
+    } else if (data.password.length === 0) {
+      showMessage({
+        message: 'Maaf Password masih kosong !',
+      });
+    } else {
+      setLoading(true);
+      console.log(data);
+      setTimeout(() => {
+        axios
+          .post('https://zavalabs.com/gobenk/api/login.php', data)
+          .then(res => {
+            console.log(res.data);
+            setLoading(false);
+            if (res.data.kode == 50) {
+              showMessage({
+                type: 'danger',
+                message: res.data.msg,
               });
+            } else {
+              storeData('user', res.data);
+              axios
+                .post('https://zavalabs.com/gobenk/api/update_token.php', {
+                  id_member: res.data.id,
+                  token: token,
+                })
+                .then(res => {
+                  console.log('update token', res);
+                });
 
-            navigation.replace('MainApp');
-          }
-        });
-    }, 1200);
+              navigation.replace('MainApp');
+            }
+          });
+      }, 1200);
+    }
   };
   return (
     <ImageBackground style={styles.page}>
@@ -74,15 +104,25 @@ export default function Login({navigation}) {
         }}>
         <View
           style={{
+            height: 220,
+            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: colors.primary,
-            padding: 10,
             borderRadius: 10,
           }}>
+          {/* <LottieView
+            style={{flex: 1}}
+            source={require('../../assets/getstarted.json')}
+            autoPlay
+            loop
+          /> */}
           <Image
-            style={{width: 150, height: 150, resizeMode: 'contain'}}
-            source={require('../../assets/logo3.png')}
+            source={require('../../assets/gobenkslider1.png')}
+            style={{
+              resizeMode: 'contain',
+              aspectRatio: 1,
+            }}
           />
         </View>
         <View style={styles.page}>
@@ -101,7 +141,7 @@ export default function Login({navigation}) {
                 color: colors.black,
                 // maxWidth: 230,
               }}>
-              GO Benk
+              GO - BENK
             </Text>
           </Text>
 
@@ -110,13 +150,19 @@ export default function Login({navigation}) {
             label="Email"
             iconname="mail"
             value={data.nama_lengkap}
-            onChangeText={value =>
-              setData({
-                ...data,
-                email: value,
-              })
-            }
+            onChangeText={value => validate(value)}
           />
+          {!valid && (
+            <Text
+              style={{
+                color: colors.danger,
+                fontFamily: fonts.primary[600],
+                textAlign: 'right',
+                right: 10,
+              }}>
+              Maaf Email Anda Tidak Valid !
+            </Text>
+          )}
           <MyGap jarak={20} />
           <MyInput
             label="Password"
@@ -130,12 +176,14 @@ export default function Login({navigation}) {
             }
           />
           <MyGap jarak={40} />
-          <MyButton
-            warna={colors.primary}
-            title="LOGIN"
-            Icons="log-in"
-            onPress={masuk}
-          />
+          {valid && (
+            <MyButton
+              warna={colors.primary}
+              title="LOGIN"
+              Icons="log-in"
+              onPress={masuk}
+            />
+          )}
         </View>
       </ScrollView>
       {loading && (
@@ -152,7 +200,7 @@ export default function Login({navigation}) {
 
 const styles = StyleSheet.create({
   page: {
-    // backgroundColor: 'white',
+    backgroundColor: 'white',
     flex: 1,
     padding: 10,
   },

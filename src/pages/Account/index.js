@@ -36,7 +36,7 @@ export default function Account({navigation}) {
       // source={require('../../assets/back.jpeg')}
       style={{
         flex: 1,
-        backgroundColor: colors.primary,
+        backgroundColor: colors.white,
       }}>
       <View
         style={{
@@ -77,7 +77,7 @@ export default function Account({navigation}) {
               fontSize: 25,
               fontFamily: fonts.secondary[600],
               top: 10,
-              color: colors.white,
+              color: colors.black,
             }}>
             {user.nama_lengkap}
           </Text>
@@ -87,7 +87,7 @@ export default function Account({navigation}) {
               fontSize: 18,
               fontFamily: fonts.secondary[400],
               top: 10,
-              color: colors.white,
+              color: colors.black,
             }}>
             {user.tlp}
           </Text>
