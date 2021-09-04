@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Picker} from 'react-native';
+import {StyleSheet, Text, View, Picker, Image} from 'react-native';
 import {Icon, ListItem, Button} from 'react-native-elements';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
@@ -25,39 +25,29 @@ export default function MyPicker({
       <View
         style={{
           flexDirection: 'row',
-          alignItems: 'center',
-          paddingVertical: 5,
         }}>
-        <Icon type="ionicon" name={iconname} color={colorIcon} size={16} />
-        <Text
+        <View
           style={{
-            fontFamily: fonts.secondary[600],
-            color: colors.primary,
-            left: 10,
-            fontSize: 16,
-            ...styleLabel,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
-          {label}
-        </Text>
+          <Icon type="ionicon" name="location" size={40} />
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+
+            borderBottomWidth: 1,
+            marginHorizontal: 10,
+          }}>
+          <Picker selectedValue={value} onValueChange={onValueChange}>
+            {data.map(item => {
+              return <Picker.Item value={item.value} label={item.label} />;
+            })}
+          </Picker>
+        </View>
       </View>
-      {label2 && (
-        <Text
-          style={{
-            fontFamily: fonts.secondary[600],
-            color: colors.primary,
-            left: 10,
-            fontSize: 14,
-            marginVertical: 1,
-            ...styleLabel,
-          }}>
-          {label2}
-        </Text>
-      )}
-      <Picker selectedValue={value} onValueChange={onValueChange}>
-        {data.map(item => {
-          return <Picker.Item value={item.value} label={item.label} />;
-        })}
-      </Picker>
     </>
   );
 }

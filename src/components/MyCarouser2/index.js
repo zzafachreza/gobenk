@@ -95,6 +95,7 @@ export default function MyCarouser2() {
         </Text>
       </View>
       <Carousel
+        loop={true}
         // layout="stack"
         layoutCardOffset={18}
         data={data}

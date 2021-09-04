@@ -12,6 +12,8 @@ import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
 import axios from 'axios';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import FadeInOut from 'react-native-fade-in-out';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -57,7 +59,7 @@ const IconCategory = ({img, title, onPress, image}) => {
             source={imageFix}
             style={{
               resizeMode: 'contain',
-              width: 80,
+              width: title == 'Go Bunker' ? 68 : 80,
               height: 80,
             }}
           />
@@ -80,6 +82,26 @@ const IconCategory = ({img, title, onPress, image}) => {
 };
 
 export default function MyKategori() {
+  const [comp, setComp] = useState({});
+  const [info, setInfo] = useState([]);
+
+  useEffect(() => {
+    axios.post('https://zavalabs.com/gobenk/api/company.php').then(res => {
+      setComp(res.data);
+      setInfo([
+        {
+          desc: res.data.nama,
+        },
+        {
+          desc: res.data.deskripsi,
+        },
+        {
+          desc: res.data.tw,
+        },
+      ]);
+    });
+  }, []);
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -89,7 +111,22 @@ export default function MyKategori() {
     });
   }, []);
 
+  const [visible, setVisible] = useState(true);
+
   const [dataKategori, setDataKategori] = useState([]);
+
+  const renderCarouselItem = ({item}) => (
+    <Text
+      style={{
+        flex: 1,
+        color: colors.white,
+        fontFamily: fonts.secondary[600],
+        fontSize: windowWidth / 25,
+        textAlign: 'center',
+      }}>
+      {item.desc}
+    </Text>
+  );
 
   return (
     <View
@@ -102,24 +139,24 @@ export default function MyKategori() {
       }}>
       <View
         style={{
-          flexDirection: 'row',
           padding: 10,
-          // justifyContent: 'center',
+          justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: '#046504',
           borderTopRightRadius: 10,
           borderTopLeftRadius: 10,
         }}>
-        <Icon type="ionicon" name="grid" color="#FFF" size={16} />
-        <Text
-          style={{
-            fontFamily: 'Montserrat-SemiBold',
-            color: '#FFF',
-            left: 10,
-            fontSize: 16,
-          }}>
-          PT. MANOLO BERKAH ENERGI
-        </Text>
+        <Carousel
+          loop={true}
+          data={info}
+          autoplay={true}
+          autoplayDelay={4000}
+          autoplayInterval={5000}
+          renderItem={renderCarouselItem}
+          sliderWidth={Dimensions.get('window').width}
+          itemWidth={Dimensions.get('window').width - 20}
+          removeClippedSubviews={false}
+        />
       </View>
       <View
         style={{

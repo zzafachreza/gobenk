@@ -62,8 +62,10 @@ export default function Home({navigation}) {
         });
     }
 
+    // storeData('cart', false);
     getData('cart').then(res => {
       setCart(res);
+      console.log('cart', res);
     });
   }, [isFocused]);
 

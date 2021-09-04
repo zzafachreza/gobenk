@@ -24,9 +24,9 @@ export default function Splash({navigation}) {
     requestCameraPermission();
     try {
       const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
-          title: 'Izinkan Untuk Download Report',
+          title: 'Izinkan Untuk Akses Lokasi',
           buttonNegative: 'Cancel',
           buttonPositive: 'OK',
         },

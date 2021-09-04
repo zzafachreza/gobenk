@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Keyboard,
+  TextInput,
 } from 'react-native';
 import {colors} from '../../utils/colors';
 import {fonts, windowWidth} from '../../utils/fonts';
@@ -152,7 +153,7 @@ export default function Barang2({navigation, route}) {
               fontSize: windowWidth / 20,
               color: colors.white,
             }}>
-            Go Ship
+            Detail Produk
           </Text>
         </View>
         <TouchableOpacity
@@ -195,17 +196,14 @@ export default function Barang2({navigation, route}) {
         )}
         <View
           style={{
-            marginTop: (windowWidth / 7) * -1,
             backgroundColor: colors.white,
             flex: 1,
             padding: 10,
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
           }}>
           <Text
             style={{
-              fontFamily: fonts.secondary[400],
-              fontSize: windowWidth / 35,
+              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 23,
               color: colors.black,
               textAlign: 'center',
             }}>
@@ -213,94 +211,123 @@ export default function Barang2({navigation, route}) {
           </Text>
           <Text
             style={{
-              fontFamily: fonts.secondary[400],
-              fontSize: windowWidth / 35,
+              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 23,
               color: colors.black,
               textAlign: 'center',
+              marginBottom: '10%',
             }}>
             Khusus Wilayah Bontang 5.000 Liter
           </Text>
-          <MyInput
-            keyboardType="number-pad"
-            onChangeText={val => {
-              setJumlah(val);
-              if (val >= 5000 && val < 10000) {
-                setData([
-                  {value: 0, label: 'Bontang'},
-                  {value: 150, label: 'Marangkayu'},
-                  {value: 225, label: 'Muara Badak'},
-                  {value: 250, label: 'Sei Siring'},
-                  {value: 375, label: 'Samarinda'},
-                  {value: 200, label: 'Sangata'},
-                  {value: 225, label: 'Rantau Pulung'},
-                  {value: 400, label: 'Muara Wahau'},
-                  {value: 350, label: 'Pengadan'},
-                  {value: 275, label: 'Muara Kaman'},
-                  {value: 350, label: 'Kaubun'},
-                  {value: 450, label: 'Sangkulirang'},
-                  {value: 150, label: 'Tenggarong'},
-                  {value: 150, label: 'Jonggon'},
-                  {value: 150, label: 'Senoni'},
-                  {value: 250, label: 'Kembang Janggut'},
-                  {value: 300, label: 'Kota Bangun'},
-                  {value: 300, label: 'Resak'},
-                  {value: 500, label: 'Barong Tongkok'},
-                  {value: 150, label: 'Loa Kulu'},
-                  {value: 150, label: 'Bakungan'},
-                  {value: 150, label: 'Tanjung Laung'},
-                  {value: 150, label: 'Loa Buah'},
-                  {value: 150, label: 'Batuah'},
-                  {value: 150, label: 'Bukuan'},
-                  {value: 200, label: 'Samboja'},
-                  {value: 200, label: 'Dondang'},
-                  {value: 150, label: 'Balikpapan'},
-                  {value: 250, label: 'Babulu'},
-                  {value: 350, label: 'Long Kali'},
-                  {value: 400, label: 'Long Ikis'},
-                  {value: 500, label: 'Long Pinang'},
-                  {value: 600, label: 'Tanah Grogot / PPU'},
-                ]);
-              } else if (val >= 10000) {
-                setData([
-                  {value: 0, label: 'Bontang'},
-                  {value: 125, label: 'Marangkayu'},
-                  {value: 200, label: 'Muara Badak'},
-                  {value: 225, label: 'Sei Siring'},
-                  {value: 350, label: 'Samarinda'},
-                  {value: 175, label: 'Sangata'},
-                  {value: 200, label: 'Rantau Pulung'},
-                  {value: 375, label: 'Muara Wahau'},
-                  {value: 325, label: 'Pengadan'},
-                  {value: 250, label: 'Muara Kaman'},
-                  {value: 325, label: 'Kaubun'},
-                  {value: 425, label: 'Sangkulirang'},
-                  {value: 125, label: 'Tenggarong'},
-                  {value: 125, label: 'Jonggon'},
-                  {value: 125, label: 'Senoni'},
-                  {value: 225, label: 'Kembang Janggut'},
-                  {value: 275, label: 'Kota Bangun'},
-                  {value: 275, label: 'Resak'},
-                  {value: 475, label: 'Barong Tongkok'},
-                  {value: 125, label: 'Loa Kulu'},
-                  {value: 125, label: 'Bakungan'},
-                  {value: 125, label: 'Tanjung Laung'},
-                  {value: 125, label: 'Loa Buah'},
-                  {value: 125, label: 'Batuah'},
-                  {value: 125, label: 'Bukuan'},
-                  {value: 175, label: 'Samboja'},
-                  {value: 175, label: 'Dondang'},
-                  {value: 125, label: 'Balikpapan'},
-                  {value: 225, label: 'Babulu'},
-                  {value: 325, label: 'Long Kali'},
-                  {value: 375, label: 'Long Ikis'},
-                  {value: 475, label: 'Long Pinang'},
-                  {value: 575, label: 'Tanah Grogot / PPU'},
-                ]);
-              }
-            }}
-            label="Masukan Jumlah Pesanan"
-            value={jumlah}
-          />
+
+          <View style={{flexDirection: 'row'}}>
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              <Image
+                source={require('../../assets/iconbenk.png')}
+                style={{width: 35, height: 35}}
+              />
+            </View>
+            <View
+              style={{
+                flex: 1,
+                paddingLeft: 15,
+                paddingRight: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  fontSize: windowWidth / 25,
+                  color: colors.black,
+                }}>
+                Jumlah Pesanan
+              </Text>
+              <TextInput
+                keyboardType="number-pad"
+                onChangeText={val => {
+                  setJumlah(val);
+                  if (val >= 5000 && val < 10000) {
+                    setData([
+                      {value: 0, label: 'Bontang'},
+                      {value: 150, label: 'Marangkayu'},
+                      {value: 225, label: 'Muara Badak'},
+                      {value: 250, label: 'Sei Siring'},
+                      {value: 375, label: 'Samarinda'},
+                      {value: 200, label: 'Sangata'},
+                      {value: 225, label: 'Rantau Pulung'},
+                      {value: 400, label: 'Muara Wahau'},
+                      {value: 350, label: 'Pengadan'},
+                      {value: 275, label: 'Muara Kaman'},
+                      {value: 350, label: 'Kaubun'},
+                      {value: 450, label: 'Sangkulirang'},
+                      {value: 150, label: 'Tenggarong'},
+                      {value: 150, label: 'Jonggon'},
+                      {value: 150, label: 'Senoni'},
+                      {value: 250, label: 'Kembang Janggut'},
+                      {value: 300, label: 'Kota Bangun'},
+                      {value: 300, label: 'Resak'},
+                      {value: 500, label: 'Barong Tongkok'},
+                      {value: 150, label: 'Loa Kulu'},
+                      {value: 150, label: 'Bakungan'},
+                      {value: 150, label: 'Tanjung Laung'},
+                      {value: 150, label: 'Loa Buah'},
+                      {value: 150, label: 'Batuah'},
+                      {value: 150, label: 'Bukuan'},
+                      {value: 200, label: 'Samboja'},
+                      {value: 200, label: 'Dondang'},
+                      {value: 150, label: 'Balikpapan'},
+                      {value: 250, label: 'Babulu'},
+                      {value: 350, label: 'Long Kali'},
+                      {value: 400, label: 'Long Ikis'},
+                      {value: 500, label: 'Long Pinang'},
+                      {value: 600, label: 'Tanah Grogot / PPU'},
+                    ]);
+                  } else if (val >= 10000) {
+                    setData([
+                      {value: 0, label: 'Bontang'},
+                      {value: 125, label: 'Marangkayu'},
+                      {value: 200, label: 'Muara Badak'},
+                      {value: 225, label: 'Sei Siring'},
+                      {value: 350, label: 'Samarinda'},
+                      {value: 175, label: 'Sangata'},
+                      {value: 200, label: 'Rantau Pulung'},
+                      {value: 375, label: 'Muara Wahau'},
+                      {value: 325, label: 'Pengadan'},
+                      {value: 250, label: 'Muara Kaman'},
+                      {value: 325, label: 'Kaubun'},
+                      {value: 425, label: 'Sangkulirang'},
+                      {value: 125, label: 'Tenggarong'},
+                      {value: 125, label: 'Jonggon'},
+                      {value: 125, label: 'Senoni'},
+                      {value: 225, label: 'Kembang Janggut'},
+                      {value: 275, label: 'Kota Bangun'},
+                      {value: 275, label: 'Resak'},
+                      {value: 475, label: 'Barong Tongkok'},
+                      {value: 125, label: 'Loa Kulu'},
+                      {value: 125, label: 'Bakungan'},
+                      {value: 125, label: 'Tanjung Laung'},
+                      {value: 125, label: 'Loa Buah'},
+                      {value: 125, label: 'Batuah'},
+                      {value: 125, label: 'Bukuan'},
+                      {value: 175, label: 'Samboja'},
+                      {value: 175, label: 'Dondang'},
+                      {value: 125, label: 'Balikpapan'},
+                      {value: 225, label: 'Babulu'},
+                      {value: 325, label: 'Long Kali'},
+                      {value: 375, label: 'Long Ikis'},
+                      {value: 475, label: 'Long Pinang'},
+                      {value: 575, label: 'Tanah Grogot / PPU'},
+                    ]);
+                  }
+                }}
+                placeholder="Masukan Jumlah Pesanan"
+                value={jumlah}
+                style={{
+                  borderBottomWidth: 1,
+                }}
+              />
+            </View>
+          </View>
+
           <MyGap jarak={5} />
           <MyPicker
             onValueChange={val => setOngkir(val)}

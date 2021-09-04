@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 
-import {getData} from '../../utils/localStorage';
+import {getData, storeData} from '../../utils/localStorage';
 import axios from 'axios';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {MyButton} from '../../components';
@@ -46,8 +46,14 @@ export default function Cart({navigation, route}) {
         id_member: id_member,
       })
       .then(res => {
-        console.log('data barang,', res.data);
-        setData(res.data);
+        if (res.data.length == 0) {
+          console.log('data barang,', res.data);
+          setData(res.data);
+          storeData('cart', false);
+        } else {
+          console.log('data barang,', res.data);
+          setData(res.data);
+        }
       });
   };
 

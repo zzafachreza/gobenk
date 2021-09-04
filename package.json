@@ -29,6 +29,7 @@
     "react-native-calendars": "^1.1263.0",
     "react-native-dropdown-picker": "^4.0.2",
     "react-native-elements": "^3.0.0-alpha.1",
+    "react-native-fade-in-out": "^1.0.6",
     "react-native-fast-image": "^8.3.4",
     "react-native-flash-message": "^0.1.17",
     "react-native-flatlist-slider": "^1.0.5",

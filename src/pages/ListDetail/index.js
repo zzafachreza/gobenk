@@ -308,7 +308,7 @@ export default function ListDetail({navigation, route}) {
           <Text
             style={{
               fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 15,
+              fontSize: windowWidth / 20,
               color: colors.primary,
             }}>
             Rp. {item.total}
@@ -326,7 +326,7 @@ export default function ListDetail({navigation, route}) {
           <Text
             style={{
               fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 20,
+              fontSize: windowWidth / 25,
               color: colors.white,
             }}>
             LIHAT INVOICE

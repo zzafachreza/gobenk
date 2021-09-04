@@ -92,51 +92,78 @@ export default function ListData({navigation}) {
                   console.log('cek detail', item);
                   navigation.navigate('ListDetail', item);
                 }}>
-                <View style={{flex: 1, padding: 10}}>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[400],
-                      fontSize: windowWidth / 30,
-                    }}>
-                    Nomor Transaksi - Nama Pelanggan :
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[600],
-                      fontSize: windowWidth / 25,
-                      color: colors.black,
-                    }}>
-                    {item.kode}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[600],
-                      fontSize: windowWidth / 25,
-                      color: colors.primary,
-                    }}>
-                    {item.nama_perusahaan}
-                  </Text>
+                <View
+                  style={{
+                    flex: 1,
+                    padding: 10,
 
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[400],
-                      fontSize: windowWidth / 28,
-                      color: colors.secondary,
-                    }}>
-                    {item.nama_pemesan}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[400],
-                    }}>
-                    {item.tanggal}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: fonts.secondary[300],
-                    }}>
-                    *{item.keterangan}
-                  </Text>
+                    flexDirection: 'row',
+                  }}>
+                  <View style={{flex: 2}}>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                        color: colors.black,
+                      }}>
+                      Nomor Transaksi
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        color: colors.black,
+                      }}>
+                      {item.kode}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                        color: colors.black,
+                      }}>
+                      Customer
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        color: colors.black,
+                      }}>
+                      {item.nama_pemesan}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        color: colors.primary,
+                      }}>
+                      {item.nama_perusahaan}
+                    </Text>
+
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[400],
+                      }}>
+                      {item.tanggal}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: fonts.secondary[300],
+                      }}>
+                      *{item.keterangan}
+                    </Text>
+                  </View>
+                  <View style={{flex: 1}}>
+                    <Image
+                      style={{
+                        borderRadius: 10,
+                        width: '100%',
+                        height: 80,
+                      }}
+                      source={{uri: item.foto}}
+                    />
+                  </View>
                 </View>
                 <View style={{flexDirection: 'row'}}>
                   <View
