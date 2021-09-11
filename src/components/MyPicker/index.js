@@ -28,8 +28,8 @@ export default function MyPicker({
         }}>
         <View
           style={{
-            justifyContent: 'center',
-            alignItems: 'center',
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
           }}>
           <Icon type="ionicon" name="location" size={40} />
         </View>

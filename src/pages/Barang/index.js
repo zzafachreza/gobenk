@@ -170,7 +170,7 @@ export default function Barang({navigation, route}) {
             Minimal Pemesanan 5.000 Liter
           </Text>
           <View style={{flexDirection: 'row', padding: 10}}>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
               <Image
                 source={require('../../assets/iconbenk.png')}
                 style={{width: 35, height: 35}}

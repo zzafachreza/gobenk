@@ -192,7 +192,7 @@ export default function Barang2({navigation, route}) {
           </Text>
 
           <View style={{flexDirection: 'row'}}>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
               <Image
                 source={require('../../assets/iconbenk.png')}
                 style={{width: 35, height: 35, left: 4}}
