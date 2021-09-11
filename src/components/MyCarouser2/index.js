@@ -14,6 +14,7 @@ import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import {fonts} from '../../utils/fonts';
 import {Icon} from 'react-native-elements';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function MyCarouser2() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -29,23 +30,44 @@ export default function MyCarouser2() {
 
   const [data, setData] = useState([
     {
+      go: 'Barang3',
       image: require('../../assets/sb1.png'),
+      id: '19',
+      nama_barang: 'Go Truck',
+      harga: '9500',
+      keterangan: 'Go Truck',
+      foto: 'https://zavalabs.com/gobenk/upload/210719041100gb1.png',
     },
     {
+      go: 'Barang',
       image: require('../../assets/sb2.png'),
+      id: '17',
+      nama_barang: 'Go Bunker',
+      harga: '9500',
+      keterangan: 'Go Bunker',
+      foto: 'https://zavalabs.com/gobenk/upload/210719040543Gobunker-Pemesanan-1024x663.png',
     },
     {
+      go: 'Barang2',
       image: require('../../assets/sb3.png'),
+      id: '18',
+      nama_barang: 'Go Ship',
+      harga: '9500',
+      keterangan: 'Go Ship',
+      foto: 'https://zavalabs.com/gobenk/upload/210719041034gb2.png',
     },
   ]);
 
   const renderCarouselItem = ({item}) => (
-    <View style={styles.cardContainer} key={item.id}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate(item.go, item)}
+      style={styles.cardContainer}
+      key={item.id}>
       <Image
         source={item.image}
         style={{widht: 200, height: 100, resizeMode: 'cover'}}
       />
-    </View>
+    </TouchableOpacity>
   );
 
   const _renderItem = ({item, index}) => {

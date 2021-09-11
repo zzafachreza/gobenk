@@ -103,7 +103,6 @@ export default function MyCarouser() {
         autoplayInterval={3000}
         onSnapToItem={index => setActiveSlide(index)}
         activeAnimationType="timing"
-        loop={true}
       />
     </View>
   );

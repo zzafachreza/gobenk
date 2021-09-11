@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableWithoutFeedback,
   Image,
+  Alert,
 } from 'react-native';
 
 import {getData, storeData} from '../../utils/localStorage';
@@ -59,15 +60,28 @@ export default function Cart({navigation, route}) {
 
   const hanldeHapus = (id, id_member) => {
     console.log(id + id_member);
-    axios
-      .post('https://zavalabs.com/gobenk/api/cart_hapus.php', {
-        id: id,
-        id_member: id_member,
-      })
-      .then(res => {
-        console.log('delete', res);
-        __getDataBarang(id_member);
-      });
+
+    Alert.alert('Go - Benk', 'Apakah Anda yakin akan hapus ini ?', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: () => {
+          axios
+            .post('https://zavalabs.com/gobenk/api/cart_hapus.php', {
+              id: id,
+              id_member: id_member,
+            })
+            .then(res => {
+              console.log('delete', res);
+              __getDataBarang(id_member);
+            });
+        },
+      },
+    ]);
   };
 
   const tambah = (id, id_member) => {

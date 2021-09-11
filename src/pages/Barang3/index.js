@@ -30,6 +30,7 @@ export default function Barang2({navigation, route}) {
 
   const [jumlah, setJumlah] = useState('5000');
   const [ongkir, setOngkir] = useState('0');
+  const [tujuan, setTujuan] = useState('');
   const [user, setUser] = useState({});
 
   const [data, setData] = useState([
@@ -37,39 +38,39 @@ export default function Barang2({navigation, route}) {
       value: 0,
       label: 'Pilih Wilayah',
     },
-    {value: 0, label: 'Bontang'},
-    {value: 150, label: 'Marangkayu'},
-    {value: 225, label: 'Muara Badak'},
-    {value: 250, label: 'Sei Siring'},
-    {value: 375, label: 'Samarinda'},
-    {value: 200, label: 'Sangata'},
-    {value: 225, label: 'Rantau Pulung'},
-    {value: 400, label: 'Muara Wahau'},
-    {value: 350, label: 'Pengadan'},
-    {value: 275, label: 'Muara Kaman'},
-    {value: 350, label: 'Kaubun'},
-    {value: 450, label: 'Sangkulirang'},
-    {value: 150, label: 'Tenggarong'},
-    {value: 150, label: 'Jonggon'},
-    {value: 150, label: 'Senoni'},
-    {value: 250, label: 'Kembang Janggut'},
-    {value: 300, label: 'Kota Bangun'},
-    {value: 300, label: 'Resak'},
-    {value: 500, label: 'Barong Tongkok'},
-    {value: 150, label: 'Loa Kulu'},
-    {value: 150, label: 'Bakungan'},
-    {value: 150, label: 'Tanjung Laung'},
-    {value: 150, label: 'Loa Buah'},
-    {value: 150, label: 'Batuah'},
-    {value: 150, label: 'Bukuan'},
-    {value: 200, label: 'Samboja'},
-    {value: 200, label: 'Dondang'},
-    {value: 150, label: 'Balikpapan'},
-    {value: 250, label: 'Babulu'},
-    {value: 350, label: 'Long Kali'},
-    {value: 400, label: 'Long Ikis'},
-    {value: 500, label: 'Long Pinang'},
-    {value: 600, label: 'Tanah Grogot / PPU'},
+    {value: '0#Bontang', label: 'Bontang'},
+    {value: '150#Marangkayu', label: 'Marangkayu'},
+    {value: '225#Muara Badak', label: 'Muara Badak'},
+    {value: '250#Sei Siring', label: 'Sei Siring'},
+    {value: '375#Samarinda', label: 'Samarinda'},
+    {value: '200#Sangata', label: 'Sangata'},
+    {value: '225#Rantau Pulung', label: 'Rantau Pulung'},
+    {value: '400#Muara Wahau', label: 'Muara Wahau'},
+    {value: '350#Pengadan', label: 'Pengadan'},
+    {value: '275#Muara Kaman', label: 'Muara Kaman'},
+    {value: '350#Kaubun', label: 'Kaubun'},
+    {value: '450#Sangkulirang', label: 'Sangkulirang'},
+    {value: '150#Tenggarong', label: 'Tenggarong'},
+    {value: '150#Jonggon', label: 'Jonggon'},
+    {value: '150#Senoni', label: 'Senoni'},
+    {value: '250#Kembang Janggut', label: 'Kembang Janggut'},
+    {value: '300#Kota Bangun', label: 'Kota Bangun'},
+    {value: '300#Resak', label: 'Resak'},
+    {value: '500#Barong Tongkok', label: 'Barong Tongkok'},
+    {value: '150#Loa Kulu', label: 'Loa Kulu'},
+    {value: '150#Bakungan', label: 'Bakungan'},
+    {value: '150#Tanjung Laung', label: 'Tanjung Laung'},
+    {value: '150#Loa Buah', label: 'Loa Buah'},
+    {value: '150#Batuah', label: 'Batuah'},
+    {value: '150#Bukuan', label: 'Bukuan'},
+    {value: '200#Samboja', label: 'Samboja'},
+    {value: '200#Dondang', label: 'Dondang'},
+    {value: '150#Balikpapan', label: 'Balikpapan'},
+    {value: '250#Babulu', label: 'Babulu'},
+    {value: '350#Long Kali', label: 'Long Kali'},
+    {value: '400#Long Ikis', label: 'Long Ikis'},
+    {value: '500#Long Pinang', label: 'Long Pinang'},
+    {value: '600#Tanah Grogot / PPU', label: 'Tanah Grogot / PPU'},
   ]);
 
   const [keyboardStatus, setKeyboardStatus] = useState(false);
@@ -207,7 +208,7 @@ export default function Barang2({navigation, route}) {
               color: colors.black,
               textAlign: 'center',
             }}>
-            Minimal Pemesanan 50.000 Liter,
+            Minimal Pemesanan 5.000 Liter,
           </Text>
           <Text
             style={{
@@ -221,7 +222,7 @@ export default function Barang2({navigation, route}) {
           </Text>
 
           <View style={{flexDirection: 'row'}}>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
               <Image
                 source={require('../../assets/iconbenk.png')}
                 style={{width: 35, height: 35, left: 4}}
@@ -248,74 +249,80 @@ export default function Barang2({navigation, route}) {
                   if (val >= 5000 && val < 10000) {
                     setData([
                       {value: 0, label: 'Bontang'},
-                      {value: 150, label: 'Marangkayu'},
-                      {value: 225, label: 'Muara Badak'},
-                      {value: 250, label: 'Sei Siring'},
-                      {value: 375, label: 'Samarinda'},
-                      {value: 200, label: 'Sangata'},
-                      {value: 225, label: 'Rantau Pulung'},
-                      {value: 400, label: 'Muara Wahau'},
-                      {value: 350, label: 'Pengadan'},
-                      {value: 275, label: 'Muara Kaman'},
-                      {value: 350, label: 'Kaubun'},
-                      {value: 450, label: 'Sangkulirang'},
-                      {value: 150, label: 'Tenggarong'},
-                      {value: 150, label: 'Jonggon'},
-                      {value: 150, label: 'Senoni'},
-                      {value: 250, label: 'Kembang Janggut'},
-                      {value: 300, label: 'Kota Bangun'},
-                      {value: 300, label: 'Resak'},
-                      {value: 500, label: 'Barong Tongkok'},
-                      {value: 150, label: 'Loa Kulu'},
-                      {value: 150, label: 'Bakungan'},
-                      {value: 150, label: 'Tanjung Laung'},
-                      {value: 150, label: 'Loa Buah'},
-                      {value: 150, label: 'Batuah'},
-                      {value: 150, label: 'Bukuan'},
-                      {value: 200, label: 'Samboja'},
-                      {value: 200, label: 'Dondang'},
-                      {value: 150, label: 'Balikpapan'},
-                      {value: 250, label: 'Babulu'},
-                      {value: 350, label: 'Long Kali'},
-                      {value: 400, label: 'Long Ikis'},
-                      {value: 500, label: 'Long Pinang'},
-                      {value: 600, label: 'Tanah Grogot / PPU'},
+                      {value: '150#Marangkayu', label: 'Marangkayu'},
+                      {value: '225#Muara Badak', label: 'Muara Badak'},
+                      {value: '250#Sei Siring', label: 'Sei Siring'},
+                      {value: '375#Samarinda', label: 'Samarinda'},
+                      {value: '200#Sangata', label: 'Sangata'},
+                      {value: '225#Rantau Pulung', label: 'Rantau Pulung'},
+                      {value: '400#Muara Wahau', label: 'Muara Wahau'},
+                      {value: '350#Pengadan', label: 'Pengadan'},
+                      {value: '275#Muara Kaman', label: 'Muara Kaman'},
+                      {value: '350#Kaubun', label: 'Kaubun'},
+                      {value: '450#Sangkulirang', label: 'Sangkulirang'},
+                      {value: '150#Tenggarong', label: 'Tenggarong'},
+                      {value: '150#Jonggon', label: 'Jonggon'},
+                      {value: '150#Senoni', label: 'Senoni'},
+                      {value: '250#Kembang Janggut', label: 'Kembang Janggut'},
+                      {value: '300#Kota Bangun', label: 'Kota Bangun'},
+                      {value: '300#Resak', label: 'Resak'},
+                      {value: '500#Barong Tongkok', label: 'Barong Tongkok'},
+                      {value: '150#Loa Kulu', label: 'Loa Kulu'},
+                      {value: '150#Bakungan', label: 'Bakungan'},
+                      {value: '150#Tanjung Laung', label: 'Tanjung Laung'},
+                      {value: '150#Loa Buah', label: 'Loa Buah'},
+                      {value: '150#Batuah', label: 'Batuah'},
+                      {value: '150#Bukuan', label: 'Bukuan'},
+                      {value: '200#Samboja', label: 'Samboja'},
+                      {value: '200#Dondang', label: 'Dondang'},
+                      {value: '150#Balikpapan', label: 'Balikpapan'},
+                      {value: '250#Babulu', label: 'Babulu'},
+                      {value: '350#Long Kali', label: 'Long Kali'},
+                      {value: '400#Long Ikis', label: 'Long Ikis'},
+                      {value: '500#Long Pinang', label: 'Long Pinang'},
+                      {
+                        value: '600#Tanah Grogot / PPU',
+                        label: 'Tanah Grogot / PPU',
+                      },
                     ]);
                   } else if (val >= 10000) {
                     setData([
-                      {value: 0, label: 'Bontang'},
-                      {value: 125, label: 'Marangkayu'},
-                      {value: 200, label: 'Muara Badak'},
-                      {value: 225, label: 'Sei Siring'},
-                      {value: 350, label: 'Samarinda'},
-                      {value: 175, label: 'Sangata'},
-                      {value: 200, label: 'Rantau Pulung'},
-                      {value: 375, label: 'Muara Wahau'},
-                      {value: 325, label: 'Pengadan'},
-                      {value: 250, label: 'Muara Kaman'},
-                      {value: 325, label: 'Kaubun'},
-                      {value: 425, label: 'Sangkulirang'},
-                      {value: 125, label: 'Tenggarong'},
-                      {value: 125, label: 'Jonggon'},
-                      {value: 125, label: 'Senoni'},
-                      {value: 225, label: 'Kembang Janggut'},
-                      {value: 275, label: 'Kota Bangun'},
-                      {value: 275, label: 'Resak'},
-                      {value: 475, label: 'Barong Tongkok'},
-                      {value: 125, label: 'Loa Kulu'},
-                      {value: 125, label: 'Bakungan'},
-                      {value: 125, label: 'Tanjung Laung'},
-                      {value: 125, label: 'Loa Buah'},
-                      {value: 125, label: 'Batuah'},
-                      {value: 125, label: 'Bukuan'},
-                      {value: 175, label: 'Samboja'},
-                      {value: 175, label: 'Dondang'},
-                      {value: 125, label: 'Balikpapan'},
-                      {value: 225, label: 'Babulu'},
-                      {value: 325, label: 'Long Kali'},
-                      {value: 375, label: 'Long Ikis'},
-                      {value: 475, label: 'Long Pinang'},
-                      {value: 575, label: 'Tanah Grogot / PPU'},
+                      {value: '0#Bontang', label: 'Bontang'},
+                      {value: '125#Marangkayu', label: 'Marangkayu'},
+                      {value: '200#Muara Badak', label: 'Muara Badak'},
+                      {value: '225#Sei Siring', label: 'Sei Siring'},
+                      {value: '350#Samarinda', label: 'Samarinda'},
+                      {value: '175#Sangata', label: 'Sangata'},
+                      {value: '200#Rantau Pulung', label: 'Rantau Pulung'},
+                      {value: '375#Muara Wahau', label: 'Muara Wahau'},
+                      {value: '325#Pengadan', label: 'Pengadan'},
+                      {value: '250#Muara Kaman', label: 'Muara Kaman'},
+                      {value: '325#Kaubun', label: 'Kaubun'},
+                      {value: '425#Sangkulirang', label: 'Sangkulirang'},
+                      {value: '125#Tenggarong', label: 'Tenggarong'},
+                      {value: '125#Jonggon', label: 'Jonggon'},
+                      {value: '125#Senoni', label: 'Senoni'},
+                      {value: '225#Kembang Janggut', label: 'Kembang Janggut'},
+                      {value: '275#Kota Bangun', label: 'Kota Bangun'},
+                      {value: '275#Resak', label: 'Resak'},
+                      {value: '475#Barong Tongkok', label: 'Barong Tongkok'},
+                      {value: '125#Loa Kulu', label: 'Loa Kulu'},
+                      {value: '125#Bakungan', label: 'Bakungan'},
+                      {value: '125#Tanjung Laung', label: 'Tanjung Laung'},
+                      {value: '125#Loa Buah', label: 'Loa Buah'},
+                      {value: '125#Batuah', label: 'Batuah'},
+                      {value: '125#Bukuan', label: 'Bukuan'},
+                      {value: '175#Samboja', label: 'Samboja'},
+                      {value: '175#Dondang', label: 'Dondang'},
+                      {value: '125#Balikpapan', label: 'Balikpapan'},
+                      {value: '225#Babulu', label: 'Babulu'},
+                      {value: '325#Long Kali', label: 'Long Kali'},
+                      {value: '375#Long Ikis', label: 'Long Ikis'},
+                      {value: '475#Long Pinang', label: 'Long Pinang'},
+                      {
+                        value: '575#Tanah Grogot / PPU',
+                        label: 'Tanah Grogot / PPU',
+                      },
                     ]);
                   }
                 }}
@@ -323,6 +330,7 @@ export default function Barang2({navigation, route}) {
                 value={jumlah}
                 style={{
                   borderBottomWidth: 1,
+                  color: colors.black,
                 }}
               />
             </View>
@@ -330,10 +338,18 @@ export default function Barang2({navigation, route}) {
 
           <MyGap jarak={5} />
           <MyPicker
-            onValueChange={val => setOngkir(val)}
+            // selectedValue={tujuan}
+            onValueChange={val => {
+              const dt = val.split('#');
+              const okr = dt[0];
+              const nm = dt[1];
+              // alert(nm);
+              setTujuan(val);
+              setOngkir(okr);
+            }}
             label="Zona Pengiriman"
             data={data}
-            value={ongkir}
+            value={tujuan}
           />
         </View>
       </View>

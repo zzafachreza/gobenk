@@ -13,10 +13,12 @@ export default function MyInput({
   onChangeText,
   value,
   keyboardType,
+  labelColor = colors.primary,
   secureTextEntry,
   styleInput,
   multiline = false,
   placeholder,
+  fontColor = colors.black,
   autoFocus,
   label2,
   styleLabel,
@@ -35,7 +37,7 @@ export default function MyInput({
         <Text
           style={{
             fontFamily: fonts.secondary[600],
-            color: colors.primary,
+            color: labelColor,
             left: 10,
             fontSize: 16,
             ...styleLabel,
@@ -47,7 +49,7 @@ export default function MyInput({
         <Text
           style={{
             fontFamily: fonts.secondary[600],
-            color: colors.primary,
+            color: labelColor,
             left: 10,
             fontSize: 14,
             marginVertical: 1,
@@ -72,6 +74,7 @@ export default function MyInput({
           borderWidth: 1,
           paddingLeft: 10,
           fontSize: 18,
+          color: fontColor,
           fontFamily: fonts.primary[400],
           ...styleInput,
         }}

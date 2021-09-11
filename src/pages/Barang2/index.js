@@ -34,11 +34,11 @@ export default function Barang2({navigation, route}) {
 
   const [data, setData] = useState([
     {
-      value: 0,
+      value: '0#Pilih Wilayah',
       label: 'Pilih Wilayah',
     },
     {
-      value: 150,
+      value: '150#Bontang',
       label: 'Bontang',
     },
   ]);
@@ -47,6 +47,7 @@ export default function Barang2({navigation, route}) {
   const _keyboardDidShow = () => setKeyboardStatus(true);
   const _keyboardDidHide = () => setKeyboardStatus(false);
   const [cart, setCart] = useState(false);
+  const [tujuan, setTujuan] = useState('');
 
   useEffect(() => {
     getData('user').then(res => {
@@ -219,31 +220,31 @@ export default function Barang2({navigation, route}) {
                   if (val >= 50000) {
                     setData([
                       {
-                        value: 0,
+                        value: '0#Pilih Wilayah',
                         label: 'Pilih Wilayah',
                       },
                       {
-                        value: 150,
+                        value: '150#Bontang',
                         label: 'Bontang',
                       },
                       {
-                        value: 400,
+                        value: '400#Sangatta',
                         label: 'Sangatta',
                       },
                       {
-                        value: 400,
+                        value: '400#Samarinda',
                         label: 'Samarinda',
                       },
                       {
-                        value: 450,
+                        value: '450#Tenggarong',
                         label: 'Tenggarong',
                       },
                       {
-                        value: 500,
+                        value: '500#Balikpapan',
                         label: 'Balikpapan',
                       },
                       {
-                        value: 750,
+                        value: '750#Berau',
                         label: 'Berau',
                       },
                     ]);
@@ -254,7 +255,7 @@ export default function Barang2({navigation, route}) {
                       //   label: 'Pilih Wilayah',
                       // },
                       {
-                        value: 150,
+                        value: '150#Bontang',
                         label: 'Bontang',
                       },
                     ]);
@@ -272,10 +273,17 @@ export default function Barang2({navigation, route}) {
           <MyGap jarak={5} />
           <MyPicker
             iconname="location"
-            onValueChange={val => setOngkir(val)}
+            onValueChange={val => {
+              const dt = val.split('#');
+              const okr = dt[0];
+              const nm = dt[1];
+              // alert(nm);
+              setTujuan(val);
+              setOngkir(okr);
+            }}
             label="Zona Pengiriman"
             data={data}
-            value={ongkir}
+            value={tujuan}
           />
         </View>
       </View>

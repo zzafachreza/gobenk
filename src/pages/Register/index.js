@@ -8,6 +8,7 @@ import {
   ScrollView,
   ImageBackground,
   Dimensions,
+  Switch,
   SafeAreaView,
 } from 'react-native';
 import {colors} from '../../utils/colors';
@@ -22,6 +23,8 @@ export default function Register({navigation}) {
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
   const [valid, setValid] = useState(true);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const validate = text => {
     // console.log(text);
@@ -107,7 +110,12 @@ export default function Register({navigation}) {
     }
   };
   return (
-    <SafeAreaView style={styles.page}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: isEnabled ? colors.black : colors.white,
+      }}>
+      <Switch onValueChange={toggleSwitch} value={isEnabled} />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.page}>
         {/* <Image
         source={require('../../assets/logooren.png')}
@@ -136,6 +144,10 @@ export default function Register({navigation}) {
 
         <MyGap jarak={20} />
         <MyInput
+          fontColor={isEnabled ? colors.white : colors.black}
+          labelColor={isEnabled ? colors.white : colors.primary}
+          colorIcon={isEnabled ? colors.white : colors.primary}
+          borderColor={isEnabled ? colors.white : colors.primary}
           label="Nama Lengkap"
           iconname="person"
           value={data.nama_lengkap}
@@ -148,6 +160,10 @@ export default function Register({navigation}) {
         />
         <MyGap jarak={10} />
         <MyInput
+          fontColor={isEnabled ? colors.white : colors.black}
+          labelColor={isEnabled ? colors.white : colors.primary}
+          colorIcon={isEnabled ? colors.white : colors.primary}
+          borderColor={isEnabled ? colors.white : colors.primary}
           label="Email"
           iconname="mail"
           value={data.email}
@@ -166,6 +182,10 @@ export default function Register({navigation}) {
         )}
         <MyGap jarak={10} />
         <MyInput
+          fontColor={isEnabled ? colors.white : colors.black}
+          labelColor={isEnabled ? colors.white : colors.primary}
+          colorIcon={isEnabled ? colors.white : colors.primary}
+          borderColor={isEnabled ? colors.white : colors.primary}
           label="Alamat"
           iconname="map"
           value={data.alamat}
@@ -178,6 +198,10 @@ export default function Register({navigation}) {
         />
         <MyGap jarak={10} />
         <MyInput
+          fontColor={isEnabled ? colors.white : colors.black}
+          labelColor={isEnabled ? colors.white : colors.primary}
+          colorIcon={isEnabled ? colors.white : colors.primary}
+          borderColor={isEnabled ? colors.white : colors.primary}
           label="Telepon"
           iconname="call"
           keyboardType="number-pad"
@@ -191,6 +215,10 @@ export default function Register({navigation}) {
         />
         <MyGap jarak={10} />
         <MyInput
+          fontColor={isEnabled ? colors.white : colors.black}
+          labelColor={isEnabled ? colors.white : colors.primary}
+          colorIcon={isEnabled ? colors.white : colors.primary}
+          borderColor={isEnabled ? colors.white : colors.primary}
           label="Password"
           iconname="key"
           secureTextEntry

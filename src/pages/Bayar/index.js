@@ -183,8 +183,7 @@ export default function Bayar({navigation, route}) {
                 fontSize: windowWidth / 25,
                 color: colors.black,
               }}>
-              Harap melakukan pembayaran dengan menyertakan Nomor PO sebagai
-              berita transfer 2 jam dari sekarang
+              Harap melakukan pembayaran 2 Jam dari sekarang
             </Text>
           </View>
           <View

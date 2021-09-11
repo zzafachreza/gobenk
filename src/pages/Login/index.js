@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  Switch,
   ImageBackground,
 } from 'react-native';
 import {colors} from '../../utils/colors';
@@ -22,6 +23,8 @@ export default function Login({navigation}) {
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
   const [valid, setValid] = useState(true);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const validate = text => {
     // console.log(text);
@@ -96,7 +99,14 @@ export default function Login({navigation}) {
     }
   };
   return (
-    <ImageBackground style={styles.page}>
+    <ImageBackground
+      style={{
+        flex: 1,
+        padding: 10,
+        backgroundColor: isEnabled ? colors.black : colors.white,
+      }}>
+      <Switch onValueChange={toggleSwitch} value={isEnabled} />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
@@ -125,12 +135,12 @@ export default function Login({navigation}) {
             }}
           />
         </View>
-        <View style={styles.page}>
+        <View>
           <Text
             style={{
               fontFamily: fonts.secondary[400],
               fontSize: windowWidth / 20,
-              color: colors.black,
+              color: isEnabled ? colors.white : colors.black,
               // maxWidth: 230,
             }}>
             Silahkan login untuk masuk ke aplikasi{' '}
@@ -138,7 +148,7 @@ export default function Login({navigation}) {
               style={{
                 fontFamily: fonts.secondary[600],
                 fontSize: windowWidth / 20,
-                color: colors.black,
+                color: isEnabled ? colors.white : colors.black,
                 // maxWidth: 230,
               }}>
               GO - BENK
@@ -147,6 +157,10 @@ export default function Login({navigation}) {
 
           <MyGap jarak={20} />
           <MyInput
+            fontColor={isEnabled ? colors.white : colors.black}
+            labelColor={isEnabled ? colors.white : colors.primary}
+            colorIcon={isEnabled ? colors.white : colors.primary}
+            borderColor={isEnabled ? colors.white : colors.primary}
             label="Email"
             iconname="mail"
             value={data.nama_lengkap}
@@ -165,6 +179,10 @@ export default function Login({navigation}) {
           )}
           <MyGap jarak={20} />
           <MyInput
+            fontColor={isEnabled ? colors.white : colors.black}
+            labelColor={isEnabled ? colors.white : colors.primary}
+            colorIcon={isEnabled ? colors.white : colors.primary}
+            borderColor={isEnabled ? colors.white : colors.primary}
             label="Password"
             iconname="key"
             secureTextEntry
