@@ -92,25 +92,18 @@ export default function MyCarouser2() {
       }}>
       <View
         style={{
-          flexDirection: 'row',
           padding: 10,
           marginTop: 10,
           marginBottom: 5,
           // justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: colors.white,
+          backgroundColor: colors.primary,
         }}>
-        <Icon
-          type="ionicon"
-          name="newspaper-outline"
-          color={colors.primary}
-          size={16}
-        />
         <Text
           style={{
             fontFamily: 'Montserrat-SemiBold',
-            color: colors.primary,
-            left: 10,
+            color: colors.white,
+
             fontSize: 16,
           }}>
           INFO BUAT KAMU

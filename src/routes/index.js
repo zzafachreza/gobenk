@@ -50,6 +50,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
 import {colors} from '../utils/colors';
 import {getData} from '../utils/localStorage';
+import {Icon} from 'react-native-elements';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -388,12 +389,7 @@ export default function Router() {
         name="Artikel"
         component={Artikel}
         options={({route, navigation}) => ({
-          title: 'ARTIKEL',
-          headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: colors.primary,
-            elevation: 0, // remove shadow on Android
-          },
+          headerShown: false,
           cardStyleInterpolator: ({current, layouts}) => {
             return {
               cardStyle: {
@@ -527,6 +523,25 @@ export default function Router() {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
+          headerRight: () => (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 10,
+              }}>
+              <TouchableOpacity
+                onPress={() => navigation.replace('MainApp')}
+                style={{
+                  position: 'relative',
+                  padding: 5,
+                  marginHorizontal: 5,
+                }}>
+                <Icon type="ionicon" name="home-outline" color={colors.white} />
+              </TouchableOpacity>
+            </View>
+          ),
           cardStyleInterpolator: ({current, layouts}) => {
             return {
               cardStyle: {

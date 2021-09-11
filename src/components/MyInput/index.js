@@ -7,6 +7,7 @@ import {TextInput} from 'react-native-gesture-handler';
 
 export default function MyInput({
   onFocus,
+  typeIcon = 'ionicon',
   label,
   iconname,
   onChangeText,
@@ -30,7 +31,7 @@ export default function MyInput({
           alignItems: 'center',
           paddingVertical: 5,
         }}>
-        <Icon type="ionicon" name={iconname} color={colorIcon} size={16} />
+        <Icon type={typeIcon} name={iconname} color={colorIcon} size={16} />
         <Text
           style={{
             fontFamily: fonts.secondary[600],

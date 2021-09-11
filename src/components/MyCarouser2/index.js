@@ -70,7 +70,6 @@ export default function MyCarouser2() {
       }}>
       <View
         style={{
-          flexDirection: 'row',
           padding: 10,
           marginTop: 10,
           marginBottom: 10,
@@ -78,17 +77,11 @@ export default function MyCarouser2() {
           alignItems: 'center',
           backgroundColor: colors.white,
         }}>
-        <Icon
-          type="ionicon"
-          name="cube-outline"
-          color={colors.primary}
-          size={16}
-        />
         <Text
           style={{
             fontFamily: 'Montserrat-SemiBold',
             color: colors.primary,
-            left: 10,
+
             fontSize: 16,
           }}>
           INFORMASI LAYANAN

@@ -69,7 +69,7 @@ export default function Checkout({navigation, route}) {
 
           <MyInput
             label="Nama Perusahaan"
-            iconname="person"
+            iconname="business"
             placeholder="Masukan nama perusahaan"
             value={kirim.nama_perusahaan}
             onChangeText={val =>

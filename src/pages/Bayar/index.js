@@ -152,11 +152,14 @@ export default function Bayar({navigation, route}) {
       axios
         .post('https://zavalabs.com/gobenk/api/transaksi_add.php', data)
         .then(res => {
-          console.log(res);
+          const kode = res.data.substring(0, 16);
+          console.log('kode adalah', kode);
           setLoading(false);
+          navigation.replace('ListView', {
+            kode: kode,
+          });
         });
 
-      navigation.replace('MainApp');
       showMessage({
         type: 'success',
         message: 'Transaksi Berhasil, Terima kasih',
@@ -172,6 +175,18 @@ export default function Bayar({navigation, route}) {
           flex: 1,
         }}>
         <View style={{flex: 1}}>
+          <View style={{padding: 20}}>
+            <Text
+              style={{
+                fontFamily: fonts.secondary[600],
+                textAlign: 'center',
+                fontSize: windowWidth / 25,
+                color: colors.black,
+              }}>
+              Harap melakukan pembayaran dengan menyertakan Nomor PO sebagai
+              berita transfer 2 jam dari sekarang
+            </Text>
+          </View>
           <View
             style={{
               flexDirection: 'row',

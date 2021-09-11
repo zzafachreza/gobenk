@@ -195,7 +195,7 @@ export default function Barang2({navigation, route}) {
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <Image
                 source={require('../../assets/iconbenk.png')}
-                style={{width: 35, height: 35}}
+                style={{width: 35, height: 35, left: 4}}
               />
             </View>
             <View

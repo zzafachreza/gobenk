@@ -178,19 +178,19 @@ export default function Cart({navigation, route}) {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{padding: 10}}>
+          <View>
             <TouchableWithoutFeedback
               onPress={() => hanldeHapus(item.id, item.id_member)}>
               <View
                 style={{
                   flex: 1,
-                  justifyContent: 'flex-end',
+                  justifyContent: 'flex-start',
                   alignItems: 'flex-end',
                 }}>
                 <Icon
                   type="ionicon"
                   name="trash"
-                  size={20}
+                  size={18}
                   color={colors.danger}
                 />
               </View>
@@ -199,7 +199,8 @@ export default function Cart({navigation, route}) {
               style={{
                 fontFamily: fonts.secondary[600],
                 color: colors.primary,
-                fontSize: 20,
+                margin: 5,
+                fontSize: windowWidth / 23,
               }}>
               {new Intl.NumberFormat().format(item.total)}
             </Text>
