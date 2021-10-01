@@ -21,7 +21,6 @@ export default function Splash({navigation}) {
   const windowHeight = Dimensions.get('window').height;
 
   const requestCameraPermission = async () => {
-    requestCameraPermission();
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -42,6 +41,7 @@ export default function Splash({navigation}) {
   };
 
   useEffect(() => {
+    requestCameraPermission();
     const unsubscribe = getData('user').then(res => {
       // console.log(res);
       if (!res) {

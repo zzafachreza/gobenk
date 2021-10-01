@@ -31,9 +31,7 @@ export default function Bayar({navigation, route}) {
   console.log('data dari bayar', data);
   const [loading, setLoading] = useState(false);
   // console.log('pembayaran', data);
-  const [foto1, setfoto1] = useState(
-    'http://mti.fti.upnyk.ac.id/asset/images/no-image.png',
-  );
+  const [foto1, setfoto1] = useState('');
 
   const options = {
     includeBase64: true,
@@ -295,14 +293,16 @@ export default function Bayar({navigation, route}) {
         </View>
 
         <View>
-          <MyButton
-            onPress={simpan}
-            title="KONFIRMASI PEMBAYARAN"
-            warna={colors.primary}
-            style={{
-              justifyContent: 'flex-end',
-            }}
-          />
+          {foto1.length > 0 && (
+            <MyButton
+              onPress={simpan}
+              title="KONFIRMASI PEMBAYARAN"
+              warna={colors.primary}
+              style={{
+                justifyContent: 'flex-end',
+              }}
+            />
+          )}
         </View>
       </SafeAreaView>
       {loading && (

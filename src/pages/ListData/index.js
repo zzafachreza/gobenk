@@ -73,6 +73,7 @@ export default function ListData({navigation}) {
       <ScrollView
         style={{
           padding: 10,
+
           flex: 1,
         }}>
         {data.map(item => {
@@ -80,9 +81,9 @@ export default function ListData({navigation}) {
             <View
               key={item.id}
               style={{
-                margin: 5,
-                borderTopRightRadius: 10,
-                borderTopLeftRadius: 10,
+                margin: 10,
+                borderRadius: 5,
+                overflow: 'hidden',
                 borderColor: colors.primary,
                 borderWidth: 1,
                 backgroundColor: colors.white,
@@ -95,18 +96,29 @@ export default function ListData({navigation}) {
                 <View
                   style={{
                     flex: 1,
-                    padding: 10,
+                    padding: 5,
 
                     flexDirection: 'row',
                   }}>
-                  <View style={{flex: 2}}>
+                  <View style={{flex: 1, justifyContent: 'center'}}>
+                    <Image
+                      style={{
+                        borderRadius: 10,
+                        width: '100%',
+                        height: 100,
+                        resizeMode: 'contain',
+                      }}
+                      source={{uri: item.foto}}
+                    />
+                  </View>
+                  <View style={{flex: 1}}>
                     <Text
                       style={{
                         fontFamily: fonts.secondary[400],
                         fontSize: windowWidth / 30,
                         color: colors.black,
                       }}>
-                      Nomor Transaksi
+                      Nomor PO
                     </Text>
                     <Text
                       style={{
@@ -134,13 +146,12 @@ export default function ListData({navigation}) {
                     </Text>
                     <Text
                       style={{
-                        fontFamily: fonts.secondary[600],
+                        fontFamily: fonts.secondary[400],
                         fontSize: windowWidth / 30,
-                        color: colors.primary,
+                        color: colors.black,
                       }}>
-                      {item.nama_perusahaan}
+                      Customer
                     </Text>
-
                     <Text
                       style={{
                         fontFamily: fonts.secondary[400],
@@ -149,42 +160,9 @@ export default function ListData({navigation}) {
                     </Text>
                     <Text
                       style={{
-                        fontFamily: fonts.secondary[300],
-                      }}>
-                      *{item.keterangan}
-                    </Text>
-                  </View>
-                  <View style={{flex: 1}}>
-                    <Image
-                      style={{
-                        borderRadius: 10,
-                        width: '100%',
-                        height: 80,
-                      }}
-                      source={{uri: item.foto}}
-                    />
-                  </View>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: 'flex-start',
-                      alignItems: 'flex-start',
-                    }}></View>
-                  <View
-                    style={{
-                      justifyContent: 'flex-end',
-                      alignItems: 'flex-end',
-                    }}>
-                    <Text
-                      style={{
-                        // borderBottomRightRadius: 10,
-                        // backgroundColor: colors.border,
                         fontFamily: fonts.secondary[600],
                         fontSize: windowWidth / 20,
                         color: colors.primary,
-                        padding: 10,
                       }}>
                       Rp. {item.total}
                     </Text>
@@ -248,14 +226,15 @@ export default function ListData({navigation}) {
                   <Text
                     style={{
                       flex: 1,
-                      backgroundColor: '#DEDEDE',
-                      color: colors.black,
+                      backgroundColor: colors.primary,
+                      color: colors.white,
+                      textAlign: 'center',
                       padding: 10,
                       fontFamily: fonts.secondary[600],
                     }}>
                     MENUNGGU KONFIRMASI
                   </Text>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     onPress={() => {
                       axios
                         .post(
@@ -290,7 +269,7 @@ export default function ListData({navigation}) {
                       }}>
                       Batalkan Transaksi
                     </Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                 </View>
               )}
 

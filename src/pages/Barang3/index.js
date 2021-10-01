@@ -34,10 +34,7 @@ export default function Barang2({navigation, route}) {
   const [user, setUser] = useState({});
 
   const [data, setData] = useState([
-    {
-      value: 0,
-      label: 'Pilih Wilayah',
-    },
+    {value: '0#Pilih Area Pengiriman', label: 'Pilih Area Pengiriman'},
     {value: '0#Bontang', label: 'Bontang'},
     {value: '150#Marangkayu', label: 'Marangkayu'},
     {value: '225#Muara Badak', label: 'Muara Badak'},
@@ -104,20 +101,25 @@ export default function Barang2({navigation, route}) {
       total: jumlah * item.harga,
       foto: item.foto,
     };
-    console.log('kirim tok server', kirim);
-    axios
-      .post('https://zavalabs.com/gobenk/api/barang_add.php', kirim)
-      .then(res => {
-        console.log(res);
-        // navigation.navigate('Success2', {
-        //   message: 'Berhasil Tambah Keranjang',
-        // });
-        showMessage({
-          type: 'success',
-          message: 'Berhasil Masuk Keranjang',
+    console.log('pilih area', tujuan);
+
+    if (tujuan == '0#Pilih Area Pengiriman') {
+      alert('Area Pengiriman Belum Dipilih');
+    } else {
+      axios
+        .post('https://zavalabs.com/gobenk/api/barang_add.php', kirim)
+        .then(res => {
+          console.log(res);
+          // navigation.navigate('Success2', {
+          //   message: 'Berhasil Tambah Keranjang',
+          // });
+          showMessage({
+            type: 'success',
+            message: 'Berhasil Masuk Keranjang',
+          });
+          setCart(true);
         });
-        setCart(true);
-      });
+    }
   };
 
   return (
@@ -203,22 +205,14 @@ export default function Barang2({navigation, route}) {
           }}>
           <Text
             style={{
+              marginTop: '5%',
               fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 23,
-              color: colors.black,
-              textAlign: 'center',
-            }}>
-            Minimal Pemesanan 5.000 Liter,
-          </Text>
-          <Text
-            style={{
-              fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 23,
+              fontSize: windowWidth / 20,
               color: colors.black,
               textAlign: 'center',
               marginBottom: '10%',
             }}>
-            Khusus Wilayah Bontang 5.000 Liter
+            Minimal Pemesanan 5.000 Liter
           </Text>
 
           <View style={{flexDirection: 'row'}}>

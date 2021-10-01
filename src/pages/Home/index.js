@@ -69,6 +69,13 @@ export default function Home({navigation}) {
     });
   }, [isFocused]);
 
+  let foto = '';
+  if (user.foto === '') {
+    foto = 'https:/zavalabs.com/avatar.png';
+  } else {
+    foto = user.foto;
+  }
+
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const ratio = 192 / 108;
@@ -97,7 +104,23 @@ export default function Home({navigation}) {
             backgroundColor: colors.primary,
             flexDirection: 'row',
           }}>
-          <View style={{flex: 1, paddingTop: 15}}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Account')}
+            style={{
+              width: 60,
+              elevation: 2,
+              height: 60,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 30,
+              overflow: 'hidden',
+            }}>
+            <Image
+              source={{uri: foto}}
+              style={{width: 60, height: 60, borderRadius: 30}}
+            />
+          </TouchableOpacity>
+          <View style={{flex: 1, paddingTop: 15, paddingLeft: 10}}>
             <Text
               style={{
                 fontSize: windowWidth / 25,

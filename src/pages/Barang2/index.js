@@ -31,11 +31,10 @@ export default function Barang2({navigation, route}) {
   const [jumlah, setJumlah] = useState('5000');
   const [ongkir, setOngkir] = useState('0');
   const [user, setUser] = useState({});
-
   const [data, setData] = useState([
     {
-      value: '0#Pilih Wilayah',
-      label: 'Pilih Wilayah',
+      value: '0#Pilih Area Pengiriman',
+      label: 'Pilih Area Pengiriman',
     },
     {
       value: '150#Bontang',
@@ -75,20 +74,25 @@ export default function Barang2({navigation, route}) {
       total: jumlah * item.harga,
       foto: item.foto,
     };
-    console.log('kirim tok server', kirim);
-    axios
-      .post('https://zavalabs.com/gobenk/api/barang_add.php', kirim)
-      .then(res => {
-        console.log(res);
-        // navigation.navigate('Success2', {
-        //   message: 'Berhasil Tambah Keranjang',
-        // });
-        showMessage({
-          type: 'success',
-          message: 'Berhasil Masuk Keranjang',
+
+    if (tujuan == '0#Pilih Area Pengiriman') {
+      alert('Area Pengiriman Belum Dipilih');
+    } else {
+      console.log('kirim tok server', kirim);
+      axios
+        .post('https://zavalabs.com/gobenk/api/barang_add.php', kirim)
+        .then(res => {
+          console.log(res);
+          // navigation.navigate('Success2', {
+          //   message: 'Berhasil Tambah Keranjang',
+          // });
+          showMessage({
+            type: 'success',
+            message: 'Berhasil Masuk Keranjang',
+          });
+          setCart(true);
         });
-        setCart(true);
-      });
+    }
   };
 
   return (
@@ -220,8 +224,8 @@ export default function Barang2({navigation, route}) {
                   if (val >= 50000) {
                     setData([
                       {
-                        value: '0#Pilih Wilayah',
-                        label: 'Pilih Wilayah',
+                        value: '0#Pilih Area Pengiriman',
+                        label: 'Pilih Area Pengiriman',
                       },
                       {
                         value: '150#Bontang',

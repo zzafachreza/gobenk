@@ -5,6 +5,7 @@ import {
   View,
   SafeAreaView,
   ActivityIndicator,
+  PermissionsAndroid,
 } from 'react-native';
 import WebView from 'react-native-webview';
 import {colors} from '../../utils/colors';
@@ -21,6 +22,31 @@ export default function ListView({route}) {
 
   const hideSpinner = () => {
     setVisible(false);
+  };
+
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Go - Benk',
+          message: 'Izinikan Aplikasi Untuk Menyimpan Data',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        axios.post(myUrl2).then(res => {
+          console.log(res.data);
+          createPDF('Invoice', res.data);
+        });
+      } else {
+        console.log('Camera permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   const createPDF = async (nama_file, html) => {
@@ -49,10 +75,7 @@ export default function ListView({route}) {
     `https://zavalabs.com/gobenk/api/inv2.php?kode=` + route.params.kode;
 
   const sendServer = () => {
-    axios.post(myUrl2).then(res => {
-      console.log(res.data);
-      createPDF(route.params.kode, res.data);
-    });
+    requestCameraPermission();
   };
 
   return (

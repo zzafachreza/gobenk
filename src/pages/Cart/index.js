@@ -271,14 +271,14 @@ export default function Cart({navigation, route}) {
         }
         style={{
           flex: 1,
-          backgroundColor: colors.primary,
-          padding: 30,
+          backgroundColor: colors.secondary,
+          padding: 25,
           marginTop: '10%',
           marginBottom: '10%',
           justifyContent: 'center',
           alignItems: 'center',
           marginHorizontal: 20,
-          borderRadius: 20,
+          borderRadius: 10,
         }}>
         <Text
           style={{
@@ -294,11 +294,8 @@ export default function Cart({navigation, route}) {
         onPress={() => navigation.navigate('MainApp')}
         style={{
           backgroundColor: colors.primary,
-          paddingVertical: 20,
-          marginBottom: '10%',
+          padding: 15,
           justifyContent: 'center',
-          marginHorizontal: 40,
-          borderRadius: 20,
           alignItems: 'center',
         }}>
         <Text

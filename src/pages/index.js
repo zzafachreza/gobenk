@@ -34,9 +34,11 @@ import ListView3 from './ListView3';
 import ListView4 from './ListVIew4';
 import Bayar3 from './Bayar3';
 import Map from './Map';
+import EditProfile from './EditProfile';
 
 export {
   Splash,
+  EditProfile,
   Map,
   GetStarted,
   Register,

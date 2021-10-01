@@ -71,9 +71,7 @@ export default function Barang({navigation, route}) {
       .post('https://zavalabs.com/gobenk/api/barang_add.php', kirim)
       .then(res => {
         console.log(res);
-        // navigation.navigate('Success2', {
-        //   message: 'Berhasil Tambah Keranjang',
-        // });
+        navigation.navigate('Cart');
         showMessage({
           type: 'success',
           message: 'Berhasil Masuk Keranjang',
@@ -213,7 +211,7 @@ export default function Barang({navigation, route}) {
               color: colors.primary,
               textAlign: 'center',
             }}>
-            Rp. {new Intl.NumberFormat().format(item.harga * jumlah)}
+            Rp. {new Intl.NumberFormat().format(item.harga)}
           </Text>
           <Text
             style={{
@@ -231,7 +229,11 @@ export default function Barang({navigation, route}) {
         <MyButton
           fontWeight="bold"
           radius={0}
-          title="PROSES PESANAN"
+          title={
+            `Rp.` +
+            new Intl.NumberFormat().format(parseInt(item.harga) * jumlah) +
+            ` -  PROSES PESANAN`
+          }
           warna={colors.primary}
           onPress={addToCart}
         />

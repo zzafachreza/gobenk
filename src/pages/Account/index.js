@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
+import {StyleSheet, Text, View, ImageBackground, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   Avatar,
@@ -12,15 +12,23 @@ import {
 import {storeData, getData} from '../../utils/localStorage';
 import {colors} from '../../utils/colors';
 import {fonts} from '../../utils/fonts';
+import {MyButton} from '../../components';
 
 export default function Account({navigation}) {
   const [user, setUser] = useState({});
   const [iLogo, setiLogo] = useState('');
 
+  let foto = '';
+  if (user.foto === '') {
+    foto = 'https:/zavalabs.com/avatar.png';
+  } else {
+    foto = user.foto;
+  }
+
   useEffect(() => {
     getData('user').then(res => {
       setUser(res);
-      // console.log(user);
+      console.log('data users', res);
       setiLogo(res.nama_lengkap.substring(0, 1));
     });
   }, []);
@@ -56,21 +64,18 @@ export default function Account({navigation}) {
           }}>
           <View
             style={{
-              // borderWidth: 1,
-              backgroundColor: colors.secondary,
-              width: 100,
-              height: 100,
+              width: 150,
+              elevation: 2,
+              height: 150,
               justifyContent: 'center',
               alignItems: 'center',
-              borderRadius: 50,
+              borderRadius: 75,
+              overflow: 'hidden',
             }}>
-            <Text
-              style={{
-                fontSize: 50,
-                color: 'white',
-              }}>
-              {iLogo}
-            </Text>
+            <Image
+              source={{uri: foto}}
+              style={{width: 150, height: 150, borderRadius: 75}}
+            />
           </View>
           <Text
             style={{
@@ -153,6 +158,12 @@ export default function Account({navigation}) {
               {user.alamat}
             </Text>
           </View>
+          <MyButton
+            title="Edit Profile"
+            warna={colors.primary}
+            Icons="person"
+            onPress={() => navigation.navigate('EditProfile')}
+          />
           <Button
             onPress={handleSave}
             title="Sign Out"
@@ -168,12 +179,11 @@ export default function Account({navigation}) {
             }
             buttonStyle={{
               backgroundColor: colors.secondary,
-              height: 45,
+              height: 50,
               marginTop: '5%',
               borderRadius: 10,
               marginBottom: 20,
               padding: 20,
-              margin: 5,
             }}
           />
         </View>

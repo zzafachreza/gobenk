@@ -30,14 +30,20 @@ export default function Checkout({navigation, route}) {
 
   const simpan = () => {
     console.log(kirim);
-
-    navigation.navigate('Bayar', kirim);
+    if (kirim.nama_perusahaan.length === 0) {
+      showMessage({
+        message: 'Maaf Silahkan Masukan Nama Perusahaan',
+      });
+    } else {
+      navigation.navigate('Bayar', kirim);
+    }
   };
 
   useEffect(() => {
     if (isFocused) {
       setKirim({
         ...kirim,
+        nama_perusahaan: '',
         latitude: route.params.latitude,
         longitude: route.params.longitude,
       });
