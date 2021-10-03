@@ -103,7 +103,7 @@ export default function Bayar({navigation, route}) {
         </Text>
         <Image
           source={{
-            uri: foto,
+            uri: foto == '' ? 'https://zavalabs.com/nogambar.jpg' : foto,
           }}
           style={{
             width: '100%',
@@ -121,10 +121,10 @@ export default function Bayar({navigation, route}) {
               paddingRight: 5,
             }}>
             <MyButton
+              Icons="camera"
               onPress={onPress1}
-              colorText={colors.black}
               title="KAMERA"
-              warna={colors.border}
+              warna={colors.primary}
             />
           </View>
           <View
@@ -133,6 +133,7 @@ export default function Bayar({navigation, route}) {
               paddingLeft: 5,
             }}>
             <MyButton
+              Icons="images"
               onPress={onPress2}
               title="GALLERY"
               warna={colors.secondary}

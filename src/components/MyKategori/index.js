@@ -132,10 +132,11 @@ export default function MyKategori() {
     <View
       style={{
         // margin: 10,
-        padding: 10,
+        paddingTop: 10,
+        paddingHorizontal: 10,
         // borderRadius: 10,
         justifyContent: 'center',
-        backgroundColor: colors.white,
+        // backgroundColor: colors.black,
       }}>
       <View
         style={{

@@ -36,7 +36,7 @@ export default function MyCarouser2() {
       nama_barang: 'Go Truck',
       harga: '9500',
       keterangan: 'Go Truck',
-      foto: 'https://zavalabs.com/gobenk/upload/210719041100gb1.png',
+      foto: 'https://zavalabs.com/gobenk/upload/211002035029image%2052.png',
     },
     {
       go: 'Barang',
@@ -45,7 +45,7 @@ export default function MyCarouser2() {
       nama_barang: 'Go Bunker',
       harga: '9500',
       keterangan: 'Go Bunker',
-      foto: 'https://zavalabs.com/gobenk/upload/210719040543Gobunker-Pemesanan-1024x663.png',
+      foto: 'https://zavalabs.com/gobenk/upload/211002034938image%2050.png',
     },
     {
       go: 'Barang2',
@@ -54,7 +54,7 @@ export default function MyCarouser2() {
       nama_barang: 'Go Ship',
       harga: '9500',
       keterangan: 'Go Ship',
-      foto: 'https://zavalabs.com/gobenk/upload/210719041034gb2.png',
+      foto: 'https://zavalabs.com/gobenk/upload/211002035023image%2051.png',
     },
   ]);
 
@@ -93,8 +93,7 @@ export default function MyCarouser2() {
       <View
         style={{
           padding: 10,
-          marginTop: 10,
-          marginBottom: 10,
+          marginBottom: 0,
           // justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: colors.white,

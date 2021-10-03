@@ -1,17 +1,21 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Dimensions,
+  Animated,
   ImageBackground,
   TouchableNativeFeedback,
+  FlatList,
+  Image,
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {colors} from '../../utils/colors';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import {fonts} from '../../utils/fonts';
+import {ExpandingDot} from 'react-native-animated-pagination-dots';
 
 export default function MyCarouser() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -65,23 +69,22 @@ export default function MyCarouser() {
 
   const _renderItem = ({item, index}) => {
     return (
-      <View
-        style={{
-          borderRadius: 10,
-          backgroundColor: 'red',
-          overflow: 'hidden',
-        }}>
-        <ImageBackground
+      <View style={{flex: 1}}>
+        <Image
           key={item.id}
           resizeMode="cover"
           source={item.image}
           style={{
-            height: Math.round((windowWidth * 9) / 13),
+            width: windowWidth,
+
+            height: Math.round((windowWidth * 9) / 15),
           }}
         />
       </View>
     );
   };
+
+  const scrollX = React.useRef(new Animated.Value(0)).current;
 
   return (
     <View
@@ -89,7 +92,54 @@ export default function MyCarouser() {
         backgroundColor: colors.white,
         padding: 10,
       }}>
-      <Carousel
+      <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        data={data}
+        renderItem={({item}) => {
+          return (
+            <Image
+              source={item.image}
+              style={{
+                alignSelf: 'center',
+                width: windowWidth - 40,
+                height: Math.round((windowWidth * 9) / 15),
+                resizeMode: 'cover',
+                marginHorizontal: 10,
+                borderRadius: 20,
+              }}
+            />
+          );
+        }}
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {x: scrollX}}}],
+          {
+            useNativeDriver: false,
+          },
+        )}
+      />
+      <ExpandingDot
+        data={data}
+        expandingDotWidth={10}
+        scrollX={scrollX}
+        inActiveDotOpacity={0.6}
+        activeDotColor={colors.white}
+        inActiveDotColor={colors.black}
+        dotStyle={{
+          width: 10,
+          height: 10,
+          backgroundColor: colors.border,
+          // backgroundColor: 'red',
+          // borderRadius: 5,
+          // marginHorizontal: 5
+        }}
+        containerStyle={{
+          bottom: '10%',
+        }}
+      />
+
+      {/* <Carousel
         // layout="stack"
         // layoutCardOffset={18}
 
@@ -103,7 +153,7 @@ export default function MyCarouser() {
         autoplayInterval={3000}
         onSnapToItem={index => setActiveSlide(index)}
         activeAnimationType="timing"
-      />
+      /> */}
     </View>
   );
 }

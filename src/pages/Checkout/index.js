@@ -34,6 +34,14 @@ export default function Checkout({navigation, route}) {
       showMessage({
         message: 'Maaf Silahkan Masukan Nama Perusahaan',
       });
+    } else if (kirim.latitude == null) {
+      showMessage({
+        message: 'Maaf Silahkan Plih Titik Pengiriman',
+      });
+    } else if (kirim.longitude == null) {
+      showMessage({
+        message: 'Maaf Silahkan Plih Titik Pengiriman',
+      });
     } else {
       navigation.navigate('Bayar', kirim);
     }

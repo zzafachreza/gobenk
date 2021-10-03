@@ -86,6 +86,7 @@ export default function Barang2({navigation, route}) {
           // navigation.navigate('Success2', {
           //   message: 'Berhasil Tambah Keranjang',
           // });
+          navigation.navigate('Cart');
           showMessage({
             type: 'success',
             message: 'Berhasil Masuk Keranjang',

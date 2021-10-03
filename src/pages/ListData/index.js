@@ -22,6 +22,7 @@ export default function ListData({navigation}) {
   const isFocused = useIsFocused();
   const [data, setData] = useState([]);
   const [user, setUser] = useState({});
+  const [status, setStatus] = useState('');
 
   messaging().onMessage(async remoteMessage => {
     // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
@@ -48,28 +49,103 @@ export default function ListData({navigation}) {
   };
 
   useEffect(() => {
-    if (isFocused) {
-      getData('user').then(res => {
-        setUser(res);
-        // console.log(res);
+    getDataTransaksi();
+  }, []);
 
-        axios
-          .post('https://zavalabs.com/gobenk/api/transaksi.php', {
-            id_member: res.id,
-          })
-          .then(res => {
-            console.log(res.data);
-            setData(res.data);
-          });
-      });
-    }
-  }, [isFocused]);
+  const getDataTransaksi = (x = 'SEMUA') => {
+    setStatus(x);
+    console.log(x);
+    w3ese;
+    getData('user').then(res => {
+      setUser(res);
+      // console.log(res);
+      axios
+        .post('https://zavalabs.com/gobenk/api/transaksi.php', {
+          id_member: res.id,
+          status: x,
+        })
+        .then(res => {
+          console.log('getTransaksi', res.data);
+          setData(res.data);
+        });
+    });
+  };
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
       }}>
+      <View>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          style={{padding: 10}}>
+          <TouchableOpacity
+            onPress={() => getDataTransaksi('SEMUA')}
+            style={{
+              backgroundColor:
+                status == 'SEMUA' ? colors.primary : colors.secondary,
+              padding: 10,
+              marginHorizontal: 5,
+              paddingHorizontal: 20,
+              borderRadius: 5,
+            }}>
+            <Text
+              style={{fontFamily: fonts.secondary[600], color: colors.white}}>
+              SEMUA
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => getDataTransaksi('MENUNGGU KONFIRMASI')}
+            style={{
+              backgroundColor:
+                status == 'MENUNGGU KONFIRMASI'
+                  ? colors.primary
+                  : colors.secondary,
+              padding: 10,
+              marginHorizontal: 5,
+              paddingHorizontal: 20,
+              borderRadius: 5,
+            }}>
+            <Text
+              style={{fontFamily: fonts.secondary[600], color: colors.white}}>
+              MENUNGGU KONFIRMASI
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => getDataTransaksi('SEDANG DIPROSES')}
+            style={{
+              backgroundColor:
+                status == 'SEDANG DIPROSES' ? colors.primary : colors.secondary,
+              padding: 10,
+              marginHorizontal: 5,
+              paddingHorizontal: 20,
+              borderRadius: 5,
+            }}>
+            <Text
+              style={{fontFamily: fonts.secondary[600], color: colors.white}}>
+              SEDANG DIPROSES
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => getDataTransaksi('SELESAI')}
+            style={{
+              backgroundColor:
+                status == 'SELESAI' ? colors.primary : colors.secondary,
+              padding: 10,
+              marginHorizontal: 5,
+              marginRight: 20,
+              paddingHorizontal: 20,
+              borderRadius: 5,
+            }}>
+            <Text
+              style={{fontFamily: fonts.secondary[600], color: colors.white}}>
+              SELESAI
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
       <ScrollView
         style={{
           padding: 10,
@@ -175,8 +251,9 @@ export default function ListData({navigation}) {
                   <Text
                     style={{
                       flex: 1,
-                      backgroundColor: '#DEDEDE',
-                      color: colors.black,
+                      backgroundColor: colors.primary,
+                      color: colors.white,
+                      textAlign: 'center',
                       padding: 10,
                       fontFamily: fonts.secondary[600],
                     }}>
