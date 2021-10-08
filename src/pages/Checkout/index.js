@@ -82,6 +82,7 @@ export default function Checkout({navigation, route}) {
           />
 
           <MyInput
+            fontColor={colors.black}
             label="Nama Perusahaan"
             iconname="business"
             placeholder="Masukan nama perusahaan"
@@ -151,6 +152,7 @@ export default function Checkout({navigation, route}) {
                   route.params.latitude && route.params.latitude.toString()
                 }
                 style={{
+                  color: colors.black,
                   borderWidth: 1,
                   borderRadius: 10,
                   borderColor: colors.primary,
@@ -173,6 +175,7 @@ export default function Checkout({navigation, route}) {
                 style={{
                   borderWidth: 1,
                   borderRadius: 10,
+                  color: colors.black,
                   borderColor: colors.primary,
                 }}
               />

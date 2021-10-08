@@ -193,6 +193,7 @@ export default function Barang({navigation, route}) {
                 placeholder="Masukan Jumlah Pesanan"
                 value={jumlah}
                 style={{
+                  color: colors.black,
                   borderBottomWidth: 1,
                 }}
               />

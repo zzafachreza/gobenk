@@ -95,6 +95,7 @@ export default function Home({navigation}) {
     <ImageBackground
       style={{
         flex: 1,
+        backgroundColor: colors.white,
       }}>
       <ScrollView>
         <View

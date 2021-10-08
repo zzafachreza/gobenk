@@ -55,7 +55,6 @@ export default function ListData({navigation}) {
   const getDataTransaksi = (x = 'SEMUA') => {
     setStatus(x);
     console.log(x);
-    w3ese;
     getData('user').then(res => {
       setUser(res);
       // console.log(res);

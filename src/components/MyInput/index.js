@@ -65,6 +65,7 @@ export default function MyInput({
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         value={value}
+        placeholderTextColor={'gray'}
         multiline={multiline}
         onChangeText={onChangeText}
         autoCapitalize="none"

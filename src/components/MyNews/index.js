@@ -86,10 +86,7 @@ export default function MyCarouser2() {
   };
 
   return (
-    <View
-      style={{
-        backgroundColor: colors.white,
-      }}>
+    <View>
       <View
         style={{
           padding: 10,

@@ -89,7 +89,6 @@ export default function MyCarouser() {
   return (
     <View
       style={{
-        backgroundColor: colors.white,
         padding: 10,
       }}>
       <FlatList

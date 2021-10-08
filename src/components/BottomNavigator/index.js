@@ -73,14 +73,7 @@ export default function BottomNavigator({state, descriptors, navigation}) {
             accessibilityStates={isFocused ? ['selected'] : []}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
-            onPress={
-              label === 'Chat'
-                ? () =>
-                    Linking.openURL(
-                      'https://api.whatsapp.com/send?phone=6289653763986',
-                    )
-                : onPress
-            }
+            onPress={onPress}
             onLongPress={onLongPress}
             style={{flex: 1}}>
             <View

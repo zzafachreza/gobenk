@@ -99,6 +99,7 @@ export default function Map({navigation}) {
       <MapView
         provider={PROVIDER_GOOGLE}
         showsUserLocation={true}
+        showsMyLocationButton={true}
         style={styles.map}
         initialRegion={currentLocation}>
         <Marker
@@ -115,8 +116,8 @@ export default function Map({navigation}) {
             });
           }}
           coordinate={{
-            latitude: -6.928100233623593,
-            longitude: 107.63772296840338,
+            latitude: cor.latitude,
+            longitude: cor.longitude,
           }}></Marker>
       </MapView>
       <View

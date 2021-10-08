@@ -15,6 +15,7 @@ import {fonts, windowWidth} from '../../utils/fonts';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
+import PushNotification from 'react-native-push-notification';
 
 export default function ListView({route}) {
   const [user, setUser] = useState({});
@@ -58,7 +59,13 @@ export default function ListView({route}) {
 
     let file = await RNHTMLtoPDF.convert(options);
     console.log(file.filePath);
-    alert(file.filePath);
+    // alert(file.filePath);
+    PushNotification.localNotification({
+      /* Android Only Properties */
+      channelId: 'zvl-bigetronesports', // (required) channelId, if the channel doesn't exist, notification will not trigger.
+      title: 'Gobenk - Invoice', // (optional)
+      message: 'Download Selesai, ' + file.filePath, // (required)
+    });
     // showMessage({
     //   type: 'success',
     //   message: 'Berhsil di simpan di ' + file.filePath,

@@ -31,7 +31,7 @@ export default function Splash({navigation}) {
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can use the camera');
+        console.log('You can use Location');
       } else {
         console.log('Camera permission denied');
       }
