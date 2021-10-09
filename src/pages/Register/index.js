@@ -113,9 +113,9 @@ export default function Register({navigation}) {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: isEnabled ? colors.black : colors.white,
+        backgroundColor: colors.white,
       }}>
-      <Switch onValueChange={toggleSwitch} value={isEnabled} />
+      {/* <Switch onValueChange={toggleSwitch} value={isEnabled} /> */}
       <ScrollView showsVerticalScrollIndicator={false} style={styles.page}>
         {/* <Image
         source={require('../../assets/logooren.png')}

@@ -103,9 +103,9 @@ export default function Login({navigation}) {
       style={{
         flex: 1,
         padding: 10,
-        backgroundColor: isEnabled ? colors.black : colors.white,
+        backgroundColor: colors.white,
       }}>
-      <Switch onValueChange={toggleSwitch} value={isEnabled} />
+      {/* <Switch onValueChange={toggleSwitch} value={isEnabled} /> */}
 
       <ScrollView
         showsVerticalScrollIndicator={false}

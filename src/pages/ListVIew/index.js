@@ -16,6 +16,7 @@ import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
 import PushNotification from 'react-native-push-notification';
+import FileViewer from 'react-native-file-viewer';
 
 export default function ListView({route}) {
   const [user, setUser] = useState({});
@@ -60,12 +61,22 @@ export default function ListView({route}) {
     let file = await RNHTMLtoPDF.convert(options);
     console.log(file.filePath);
     // alert(file.filePath);
-    PushNotification.localNotification({
-      /* Android Only Properties */
-      channelId: 'zvl-bigetronesports', // (required) channelId, if the channel doesn't exist, notification will not trigger.
-      title: 'Gobenk - Invoice', // (optional)
-      message: 'Download Selesai, ' + file.filePath, // (required)
-    });
+
+    // const path = // absolute-path-to-my-local-file.
+    FileViewer.open(file.filePath, {showOpenWithDialog: true})
+      .then(() => {
+        // success
+        PushNotification.localNotification({
+          /* Android Only Properties */
+          channelId: 'zvl-bigetronesports', // (required) channelId, if the channel doesn't exist, notification will not trigger.
+          title: 'Gobenk - Invoice', // (optional)
+          message: 'Download Selesai, ' + file.filePath, // (required)
+        });
+      })
+      .catch(error => {
+        // error
+      });
+
     // showMessage({
     //   type: 'success',
     //   message: 'Berhsil di simpan di ' + file.filePath,
