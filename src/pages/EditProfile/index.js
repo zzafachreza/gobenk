@@ -33,6 +33,7 @@ export default function EditProfile({navigation, route}) {
     password: null,
     tlp: null,
     alamat: null,
+    nama_perusahaan: null,
   });
 
   const options = {
@@ -187,6 +188,19 @@ export default function EditProfile({navigation, route}) {
             setData({
               ...data,
               nama_lengkap: value,
+            })
+          }
+        />
+
+        <MyGap jarak={20} />
+        <MyInput
+          label="Nama Perusahaan"
+          iconname="business-outline"
+          value={data.nama_perusahaan}
+          onChangeText={value =>
+            setData({
+              ...data,
+              nama_perusahaan: value,
             })
           }
         />

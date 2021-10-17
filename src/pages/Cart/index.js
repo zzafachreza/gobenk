@@ -266,6 +266,7 @@ export default function Cart({navigation, route}) {
             nama_lengkap: user.nama_lengkap,
             nohp: user.tlp,
             email: user.email,
+            nama_perusahaan: user.nama_perusahaan,
             alamat: user.alamat,
           })
         }

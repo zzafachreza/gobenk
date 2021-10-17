@@ -13,6 +13,7 @@ import Search2 from './Search2';
 import Kategori from './Kategori';
 import ListData from './ListData';
 import ListData2 from './ListData2';
+import ListData3 from './ListData3';
 import Notifikasi from './Notifikasi';
 import Barang from './Barang';
 import Barang2 from './Barang2';
@@ -54,6 +55,7 @@ export {
   Kategori,
   ListData,
   ListData2,
+  ListData3,
   Notifikasi,
   Barang,
   Barang2,

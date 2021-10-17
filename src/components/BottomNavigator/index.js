@@ -64,6 +64,8 @@ export default function BottomNavigator({state, descriptors, navigation}) {
           iconName = 'cart';
         } else if (label === 'Pesanan') {
           iconName = 'cube-outline';
+        } else if (label === 'History') {
+          iconName = 'calendar-outline';
         }
 
         return (

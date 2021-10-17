@@ -63,7 +63,7 @@ export default function ListView({route}) {
     // alert(file.filePath);
 
     // const path = // absolute-path-to-my-local-file.
-    FileViewer.open(file.filePath, {showOpenWithDialog: true})
+    FileViewer.open(file.filePath, {showOpenWithDialog: false})
       .then(() => {
         // success
         PushNotification.localNotification({

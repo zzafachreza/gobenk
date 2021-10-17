@@ -5,6 +5,7 @@ import {
   View,
   SafeAreaView,
   ActivityIndicator,
+  PermissionsAndroid,
 } from 'react-native';
 import WebView from 'react-native-webview';
 import {colors} from '../../utils/colors';
@@ -14,6 +15,7 @@ import {fonts, windowWidth} from '../../utils/fonts';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import axios from 'axios';
 import {showMessage} from 'react-native-flash-message';
+import FileViewer from 'react-native-file-viewer';
 
 export default function ListView2({navigation, route}) {
   const [user, setUser] = useState({});
@@ -21,6 +23,31 @@ export default function ListView2({navigation, route}) {
 
   const hideSpinner = () => {
     setVisible(false);
+  };
+
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Go - Benk',
+          message: 'Izinikan Aplikasi Untuk Menyimpan Data',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        axios.post(myUrl2).then(res => {
+          console.log(res.data);
+          createPDF('Kurir', res.data);
+        });
+      } else {
+        console.log('Camera permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   const createPDF = async (nama_file, html) => {
@@ -32,7 +59,22 @@ export default function ListView2({navigation, route}) {
 
     let file = await RNHTMLtoPDF.convert(options);
     console.log(file.filePath);
-    alert(file.filePath);
+    // alert(file.filePath);
+
+    // const path = // absolute-path-to-my-local-file.
+    FileViewer.open(file.filePath, {showOpenWithDialog: false})
+      .then(() => {
+        // success
+        PushNotification.localNotification({
+          /* Android Only Properties */
+          channelId: 'zvl-bigetronesports', // (required) channelId, if the channel doesn't exist, notification will not trigger.
+          title: 'Gobenk - Invoice', // (optional)
+          message: 'Download Selesai, ' + file.filePath, // (required)
+        });
+      })
+      .catch(error => {
+        // error
+      });
   };
 
   const myUrl =
@@ -41,7 +83,9 @@ export default function ListView2({navigation, route}) {
   const myUrl2 =
     `https://zavalabs.com/gobenk/api/inv_kurir2.php?kode=` + route.params.kode;
 
-  const sendServer = () => {};
+  const sendServer = () => {
+    requestCameraPermission();
+  };
 
   return (
     <SafeAreaView
@@ -75,23 +119,23 @@ export default function ListView2({navigation, route}) {
         </View>
       )}
       <TouchableOpacity
-        // onPress={sendServer}
+        onPress={sendServer}
         style={{
           padding: 15,
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
-          backgroundColor: colors.white,
+          backgroundColor: colors.danger,
         }}>
-        <Icon type="ionicon" name="cloud-done-outline" color={colors.primary} />
+        <Icon type="ionicon" name="download-outline" color={colors.white} />
         <Text
           style={{
             left: 10,
             fontFamily: fonts.secondary[600],
             fontSize: windowWidth / 20,
-            color: colors.primary,
+            color: colors.white,
           }}>
-          SELESAI
+          DOWNLOAD
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

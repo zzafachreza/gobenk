@@ -51,7 +51,7 @@ export default function Checkout({navigation, route}) {
     if (isFocused) {
       setKirim({
         ...kirim,
-        nama_perusahaan: '',
+        nama_perusahaan: route.params.nama_perusahaan,
         latitude: route.params.latitude,
         longitude: route.params.longitude,
       });
@@ -185,7 +185,11 @@ export default function Checkout({navigation, route}) {
             title="Buka Maps"
             warna={colors.primary}
             Icons="map-outline"
-            onPress={() => navigation.navigate('Map')}
+            onPress={() =>
+              navigation.navigate('Map', {
+                nama_perusahaan: kirim.nama_perusahaan,
+              })
+            }
           />
           <MyGap jarak={5} />
           <MyInput

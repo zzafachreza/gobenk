@@ -52,7 +52,7 @@ export default function ListData({navigation}) {
     getDataTransaksi();
   }, []);
 
-  const getDataTransaksi = (x = 'SEMUA') => {
+  const getDataTransaksi = (x = 'SELESAI') => {
     setStatus(x);
     console.log(x);
     getData('user').then(res => {

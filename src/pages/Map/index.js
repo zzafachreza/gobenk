@@ -28,7 +28,9 @@ import {colors} from '../../utils/colors';
 import {MyButton} from '../../components';
 import Geocoder from 'react-native-geocoding';
 
-export default function Map({navigation}) {
+export default function Map({navigation, route}) {
+  const item = route.params;
+
   let _map = null;
   let _carousel = null;
   const [currentLocation, setcurrentLocation] = useState({});
@@ -36,10 +38,13 @@ export default function Map({navigation}) {
   const [radius, setRadius] = useState(1000);
   const [markers, setMarker] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
-  const [cor, setCor] = useState([]);
+  const [cor, setCor] = useState({
+    nama_perusahaan: item.nama_perusahaan,
+  });
 
   useEffect(() => {
     locateCurrentPosition();
+    console.log(route.params);
   }, []);
 
   const locateCurrentPosition = () => {
@@ -53,6 +58,7 @@ export default function Map({navigation}) {
         longitudeDelta: 0.035,
       });
       setCor({
+        ...cor,
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });

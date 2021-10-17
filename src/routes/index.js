@@ -46,6 +46,7 @@ import {
   ListView4,
   Map,
   EditProfile,
+  ListData3,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -78,6 +79,7 @@ const MainApp = () => {
     return (
       <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
         <Tab.Screen name="Pesanan" component={ListData2} />
+        <Tab.Screen name="History" component={ListData3} />
         <Tab.Screen name="Account" component={Account} />
       </Tab.Navigator>
     );
@@ -125,6 +127,13 @@ export default function Router() {
       <Stack.Screen
         name="ListData2"
         component={ListData2}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ListData3"
+        component={ListData3}
         options={{
           headerShown: false,
         }}
